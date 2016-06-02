@@ -1,0 +1,163 @@
+#nomecampeonato {
+  background-color: #e6e6e6;
+  margin: 10px auto;
+  padding: 20px 10px 30px 10px;
+  font-size: 35px;
+  font-family: 'Catamaran', sans-serif;
+  box-shadow: 3px 3px 3px black;
+  opacity: 1;
+  width: 50%;
+  height: auto;
+  border-radius: 5px;
+  transform: translateY(10px);
+}
+
+#nomecampeonato h1 {
+  margin-bottom: 10px;
+  color: black;
+}
+
+.divitite {
+  margin: 20px auto;
+  width: 90%;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px black;
+
+  background-color: #b3ccff;
+  /*background-color: rgba(255,255,255,0.5);*/
+}
+
+.conteudo{
+  margin: 0 auto;
+  background-color: transparent;
+}
+
+.conteudo, .conteudo ul {
+  display: flex;
+}
+
+
+.conteudo ul {
+  flex-direction: column;
+  width: 90%;
+  min-width: 50px;
+  max-width: 300px;
+  list-style: none;
+  padding: 0;
+}
+
+.game + li {
+  flex-grow: 1.0;
+}
+
+.conteudo li:first-child,.conteudo li:last-child {
+  flex-grow: 0.5;
+}
+
+
+.celula {
+  float:left;
+  width: 60%;
+  height: 30px;
+  padding-bottom: 7px;
+  font-size: 25px;
+  font-family: 'Catamaran', sans-serif;
+  box-shadow: 3px 3px 3px black;
+  border-radius: 3px;
+}
+
+.game-top > .celula {
+  transform: translateY(2px) translateX(-2px);
+  display: absolute;
+  background-color: #29a329;
+  color: white;
+}
+.game-bottom > .celula {
+  transform: translateY(-2px) translateX(-2px);
+  display: absolute;
+  background-color: white;
+  color: #29a329;
+}
+
+.game-top {
+  border-bottom: 2px solid black;
+}
+
+.game-top + li {
+  border-right: 2px solid black;
+  min-height: 50px;
+}
+#winner > li {
+  border: 0;
+}
+#winner .celula{
+  background-color: #0066ff;
+  color: white;
+}
+.game-bottom + li {
+  min-height: 50px;
+}
+.game-bottom {
+  border-top: 2px solid black;
+}
+
+.participantes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.participante ul {
+  margin: 10px auto;
+  width: 70%;
+  position: relative;
+  left: -20px;
+  list-style-type: none;
+}
+
+.participante {
+    border-radius: 5px;
+    width: 30%;
+    justify-content: center;
+    background-color: #e6e6e6;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    min-width: 170px;
+}
+.participante ul li{
+  text-align: center;
+  justify-content: center;
+  background-color: #ff751a;
+  font-family: 'Catamaran', sans-serif;
+  font-size: 20px;
+  border-bottom: 0px;
+  margin: 0px;
+
+}
+.participante ul li:nth-child(even) {
+
+  background-color: #99ddff;
+}
+
+.participante ul li:last-child {
+
+}
+
+@media only screen and (max-device-width: 860px),
+screen and (max-width: 860px){
+  .divitite {
+    background-color: transparent;
+    box-shadow: 0px 0px 0px white;
+  }
+  #nomecampeonato h1 {
+    transform: translateY(0px);
+  }
+  .celula {
+    float:left;
+    font-size: 15px;
+    height: auto;
+    padding-bottom: 0;
+  }
+}

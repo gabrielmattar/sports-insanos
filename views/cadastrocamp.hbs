@@ -1,0 +1,135 @@
+<hmtl>
+  <head>
+    <title>Champion League</title>
+     <meta charset="utf8" ></meta>
+     <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="stylesheet" href="css/corpo.css">
+    <link rel="stylesheet" href="css/cabecalho.css">
+    <link rel="stylesheet" href="css/frontpage.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/cadastrocamp.css">
+    <link href='https://fonts.googleapis.com/css?family=Catamaran' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Goudy+Bookletter+1911' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Coda' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Cinzel+Decorative:700' rel='stylesheet' type='text/css'>
+
+  </head>
+
+  <body id="corpo">
+    <header>
+      <h1>Campeonatos Irados</h1>
+    </header>
+    <div class='login'>
+      <form>
+        <strong>User:</strong>
+        <div>
+          <input type="text" name="loginnome" required/>
+        </div>
+
+        <strong>Password:</strong>
+        <div>
+          <input type='password' name='loginsenha' required/>
+        </div>
+        <button class='next' type='loginbutton'>Login</button>
+      </form>
+    </div>
+
+    <nav class='menu'>
+      <div class='logo'><img src="../imgs/GM_logo.jpeg"></div>
+      <ul>
+        <li >
+          <a href="/" class="item-menu">INICIO</a>
+        </li>
+        <li >
+          <a href="#" class="item-menu" id="campeonato">CAMPEONATO</a>
+          <div class="sub-conteudo">
+            <div class="menu-sub">
+              <ul>
+                <li>
+                  <a href="cadastrocamp">CRIAR NOVO</a>
+                </li>
+                <li>
+                  <a href="lista">CAMPEONATOS</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li >
+          <a href="cadastro" class="item-menu">REGISTRO</a>
+        </li>
+        <li>
+          <a href="#" class="item-menu" id="login">LOGIN</a>
+        </li>
+      </ul>
+      <div class = 'tag-menu'><p>Menu</p></div>
+
+    </nav>
+
+    <div class='conteudo'>
+
+      <div class='conteudo-cadastro'>
+        <form>
+           <strong>  Nome do Campeonato: </strong>
+           <div id="alinhado" >
+             <input type="text" name="nomec" placeholder="Nome" pattern="[^'\x22]+" title="Aspas inválida" required>
+           </div>
+           <strong>  Número de participantes: </strong>
+           <div id="alinhado" >
+             <input type="number" min="0" name="nomec" placeholder="4" required>
+
+           </div>
+
+             <button class='submitn' type='button'>Submit</button>
+
+           <strong>  Nome dos Times: </strong>
+           <div id="alinhado" >
+              <div id="times">
+               <input type="text" name="nomet" placeholder="Nome time 1"  required>
+               <div id="participantes">
+                 <input type="text" name="nomep" placeholder="Nome participante 1" required>
+                 <input type="text" name="nomep" placeholder="Nome participante 2" required>
+                 <input type="text" name="nomep" placeholder="Nome participante 3" required>
+                 <input type="text" name="nomep" placeholder="Nome participante 4" required>
+               </div>
+             </div>
+           </div>
+           <div id="alinhado" >
+             <div id="times">
+               <input type="text" name="nomet" placeholder="Nome time 2"  required>
+               <div id="participantes">
+                 <input type="text" name="nomep" placeholder="Nome participante 1" required>
+                 <input type="text" name="nomep" placeholder="Nome participante 2" required>
+                 <input type="text" name="nomep" placeholder="Nome participante 3" required>
+                 <input type="text" name="nomep" placeholder="Nome participante 4" required>
+               </div>
+             </div>
+           </div>
+
+           <div class="adicionar">
+              <button class='bmaismenos' type="button">-</button>
+              <button class='bmaismenos' type="button">+</button>
+           </div>
+
+            <button class='next' type='submit'>Next</button>
+
+        </form>
+      </div>
+  </div>
+
+    <footer>
+      <ul class='footer'>
+        <li>Contact us</li>
+        <li><a href="https://twitter.com/MattarGabriel">@MattarGabriel</a><img src='http://www.sketchappsources.com/resources/source-image/twitterlogo_1x.png'></img></li>
+        <li><a href="https://twitter.com/marcheziniXD">@marcheziniXD</a><img src='http://www.sketchappsources.com/resources/source-image/twitterlogo_1x.png'></img></li>
+      </ul>
+    </footer>
+
+
+  <script src='js/login.js'></script>
+  <script src='js/submenu.js'></script>
+  <script src='js/background.js'> </script>
+  </body>
+
+</hmtl>

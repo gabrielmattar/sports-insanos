@@ -1,0 +1,38 @@
+.conteudo {
+  text-align: center;
+  background-color: white;
+  margin: 10px 10% 10px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  padding: 5px 10px 10px;
+}
+.conteudo p{
+  font-family: 'Goudy Bookletter 1911', Georgia, Times, serif;
+  margin: 5px 40px 20px 40px;
+  font-size: 20px;
+  color: black;
+  line-height: 1em;
+  text-align: justify;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+  background-image: url("../imgs/background2.jpg");
+
+  -webkit-transition: background-image 2s ease-in-out;
+  -ms-transition: background-image 2s ease-in-out;
+  -moz-transition: background-image 2s ease-in-out;
+  -o-transition: background-image 2s ease-in-out;
+  transition: background-image 2s ease-in-out;
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: black;
+  height: 100%;
+}
+h2 {
+    font-family: 'Goudy Bookletter 1911', Georgia, Times, serif;
+    text-align: center;
+    font-size: 30px;
+    color: black;
+}

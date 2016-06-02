@@ -1,0 +1,124 @@
+.login {
+  box-sizing: border-box;
+  height: 250px;
+  width: 20%;
+  border-radius: 4px;
+  position: absolute;
+  left: 70%;
+  padding: 20px 10px 10px 10px;
+  background-color: #0059b3;
+  top: -340px;
+  box-shadow: 5px 5px 10px black;
+
+  -webkit-transition: top 0.3s ease-in-out;
+  -ms-transition: top 0.3s ease-in-out;
+  -moz-transition: top 0.3s ease-in-out;
+  -o-transition: top 0.3s ease-in-out;
+  transition: top 0.3s ease-in-out;
+}
+
+.showup1 {
+  top: 150px;
+}
+.showup2 {
+  top: 400px;
+}
+
+.login form{
+  display: inline-block;
+  margin-bottom: 8px;
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 20px;
+  color: white;
+  line-height: 1em;
+  text-align: justify;
+}
+
+.login input[type=text] {
+    -webkit-appearance: none;
+    appearance: none;
+    display: inline-block;
+    height: 29px;
+    width: 100%;
+    margin: 20px 0px 10px 0px;
+    padding: 0 8px;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-top: 1px solid #c0c0c0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+}
+
+.login input[type=password] {
+    -webkit-appearance: none;
+    appearance: none;
+    display: inline-block;
+    height: 29px;
+    width: 100%;
+    margin: 20px 0px 10px 0px;
+    padding: 0 8px;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-top: 1px solid #c0c0c0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+}
+
+.login input:hover {
+    border: 1px solid #b9b9b9;
+    border-top: 1px solid #a0a0a0;
+    -webkit-box-shadow: inset 0 3px 3px rgba(0,0,0,0.2);
+    -moz-box-shadow: inset 0 3px 3px rgba(0,0,0,0.2);
+    box-shadow: inset 0 3px 3px rgba(0,0,0,0.2);
+}
+
+
+.login button {
+  margin: 5px 0px 5px 24% ;
+  width: 50%;
+  height: 40px;
+  font-family:
+  box-sizing: border-box;
+  font-family: 'Catamaran', sans-serif;
+  font-size: 25px;
+  color: white;
+  background-color: #cc6600;
+  border: none;
+  border-radius: 2px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.login button:hover {
+  box-shadow: 5px 5px 5px black;
+  color: #cc6600;
+  background-color: white;
+  transform: translateY(-3px);
+}
+
+.login button:active{
+  box-shadow: 5px 5px 5px black;
+  color: #804000;
+  background-color: #e0e0d2;
+  transform: translateY(-3px);
+}
+
+
+
+@media only screen and (max-device-width: 860px),
+screen and (max-width: 860px){
+  .login{
+    left: 25%;
+    width: 50%;
+  }
+}

@@ -1,0 +1,28 @@
+#e404{
+  padding-top: 20px
+  font-size: 30px;
+  padding-left: 10px;
+  text-align: center;
+  color: white;
+}
+#escrito{
+  padding-right: 20px;
+  font-size: 20px;
+  text-align: center;
+  color: white;
+
+}
+
+body{
+  background-image: url("../imgs/map.jpg");
+  background-size: cover;
+  margin: 0;
+  position: static;
+  clear: both;
+
+  background-repeat:   no-repeat;
+  background-position: center;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+}

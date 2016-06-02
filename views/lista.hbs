@@ -1,0 +1,152 @@
+<hmtl>
+  <head>
+    <title>Champion League</title>
+     <meta charset="utf8" ></meta>
+     <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="stylesheet" href="css/corpo.css">
+    <link rel="stylesheet" href="css/lista.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/cabecalho.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link href='http://fonts.googleapis.com/css?family=Goudy+Bookletter+1911' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=New+Rocker' rel='stylesheet' type='text/css'>
+
+    <link href='https://fonts.googleapis.com/css?family=Coda' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Cinzel+Decorative:700' rel='stylesheet' type='text/css'>
+
+  </head>
+  <body id="corpo">
+    <header>
+      <h1>Campeonatos Irados</h1>
+    </header>
+    <div class='login'>
+      <form>
+        <strong>User:</strong>
+        <div>
+          <input type="text" name="loginnome" required/>
+        </div>
+
+        <strong>Password:</strong>
+        <div>
+          <input type='password' name='loginsenha' required/>
+        </div>
+        <button class='next' type='loginbutton'>Login</button>
+      </form>
+    </div>
+
+    <nav class='menu'>
+      <div class='logo'><img src="../imgs/GM_logo.jpeg"></div>
+      <ul>
+        <li >
+          <a href="/" class="item-menu">INICIO</a>
+        </li>
+        <li >
+          <a href="#" class="item-menu" id="campeonato">CAMPEONATO</a>
+          <div class="sub-conteudo">
+            <div class="menu-sub">
+              <ul>
+                <li>
+                  <a href="cadastrocamp">CRIAR NOVO</a>
+                </li>
+                <li>
+                  <a href="lista">CAMPEONATOS</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li >
+          <a href="cadastro" class="item-menu">REGISTRO</a>
+        </li>
+        <li>
+          <a href="#" class="item-menu" id="login">LOGIN</a>
+        </li>
+      </ul>
+      <div class = 'tag-menu'><p>Menu</p></div>
+
+    </nav>
+
+
+    <div class = 'conteudo'>
+      <div id="pesquisa">
+        <form>
+          <input type="text" placeholder="Search..." pattern="[^'\x22]+" title="Proibido aspas" >
+          <button class="search" type='searchbutton' >Search</button>
+        </form>
+      </div >
+      <div id="tabela">
+        <table>
+          <tr>
+
+            <th id = 'identificadores'><strong>CAMPEONATO</strong></th>
+            <th id = 'identificadores'><strong>N# DE PARTICIPANTES</strong></th>
+            <th id = 'identificadores'><strong> CONCLUIDO</strong></th>
+            <th id = 'identificadores'><strong>VENCEDOR</strong></th>
+
+        </tr>
+        <tr>
+            <td id = 'items'>Computação</td>
+            <td id = 'items'>8</td>
+            <td id = 'items'>20%</td>
+            <td id = 'items'>Mattar</td>
+        </tr>
+        <tr>
+            <td id = 'items'>Nosso Campeonato</td>
+            <td id = 'items'>4</td>
+            <td id = 'items'>100%</td>
+            <td id = 'items'>Marchezini</td>
+        </tr>
+        <tr>
+            <td id = 'items'>test</td>
+            <td id = 'items'>test1</td>
+            <td id = 'items'>test2</td>
+            <td id = 'items'>test3</td>
+        </tr>
+        <tr>
+            <td id = 'items'>test</td>
+            <td id = 'items'>test1</td>
+            <td id = 'items'>test2</td>
+            <td id = 'items'>test3</td>
+        </tr>
+        <tr>
+            <td id = 'items'>test</td>
+            <td id = 'items'>test1</td>
+            <td id = 'items'>test2</td>
+            <td id = 'items'>test3</td>
+        </tr>
+        <tr>
+            <td id = 'items'>test</td>
+            <td id = 'items'>test1</td>
+            <td id = 'items'>test2</td>
+            <td id = 'items'>test3</td>
+        </tr>
+        <tr>
+            <td id = 'items'>test</td>
+            <td id = 'items'>test1</td>
+            <td id = 'items'>test2</td>
+            <td id = 'items'>test3</td>
+        </tr>
+        <tr>
+            <td id = 'items'>test</td>
+            <td id = 'items'>test1</td>
+            <td id = 'items'>test2</td>
+            <td id = 'items'>test3</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+      <footer>
+        <ul class='footer'>
+          <li>Contact us</li>
+          <li><a href="https://twitter.com/MattarGabriel">@MattarGabriel</a><img src='http://www.sketchappsources.com/resources/source-image/twitterlogo_1x.png'></img></li>
+          <li><a href="https://twitter.com/marcheziniXD">@marcheziniXD</a><img src='http://www.sketchappsources.com/resources/source-image/twitterlogo_1x.png'></img></li>
+        </ul>
+      </footer>
+
+    <script src='js/login.js'></script>
+    <script src='js/submenu.js'></script>
+    <script src='js/background.js'> </script>
+  </body>
+
+</hmtl>
