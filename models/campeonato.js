@@ -3,9 +3,15 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var campSchema =  new Schema({
   nome: {type: String, required: true, unique: true},
-  adm: {type: Schema.ObjectID, ref: 'users'}
+  adm: {
+    type: Schema.Types.ObjectId,
+    ref: 'users'
+  },
   numerotimes: Number,
-  times: [{type: Schema.ObjectID, ref: 'time'}]
+  times: [{
+      type: Schema.Types.ObjectId, 
+      ref: 'time'
+    }]
 
 });
 

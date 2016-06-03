@@ -60,7 +60,7 @@ var User = require('./models/users');
 var newUser = User({
   nome: 'Peter',
   Sobrenome: 'Kil',
-  username: 'starlord55',
+  username: 'malucobeleza',
   password: 'password',
   sexo: 'Masculino'
 });
