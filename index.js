@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var hbs = require('hbs');
-var pg = require('pg');
 
 
 app.set('port', (process.env.PORT || 5000));
@@ -35,18 +34,4 @@ app.get('/campeonatochaves', function (req, res) {
 
 app.listen(app.get('port'), '0.0.0.0', function() {
   console.log('Node app is running on port', app.get('port'));
-});
-
-
-
-app.get('/db', function (request, response) {
-  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query('SELECT * FROM test_table', function(err, result) {
-      done();
-      if (err)
-       { console.error(err); response.send("Error1 " + err); }
-      else
-       { response.render('views/frontpage', {results: result.rows} ); }
-    });
-  });
 });
