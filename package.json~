@@ -1,0 +1,25 @@
+{
+  "name": "sports-championship-manager",
+  "version": "1.0.0",
+  "description": "Um super projeto insano feito por:  Gabriel Mattar e Guilherme Marchezini",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gabrielmattar@bitbucket.org/gabrielmattar/sports-championship-manager.git"
+  },
+  "author": "Mattarzini",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/gabrielmattar/sports-championship-manager#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "handlebars": "^4.0.5",
+    "hbs": "^4.0.0"
+    "pg": "4.x",
+    "ejs": "2.3.3",
+    "cool-ascii-faces": "1.3.3"
+  }
+}
