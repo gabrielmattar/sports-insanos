@@ -65,9 +65,10 @@ var newUser = User({
   sexo: 'Masculino'
 });
 
-// save the user
-newUser.save(function(err) {
-  if (err) throw err;
-
-  console.log('User created!');
-});
+// Comentei essa parte pq tava dando pau ja que tamo sempre salvando o mesmo manolo no BD
+// // save the user
+// newUser.save(function(err) {
+//   if (err) throw err;
+//
+//   console.log('User created!');
+// });
