@@ -44,7 +44,7 @@ app.get('/db', function (request, response) {
     client.query('SELECT * FROM test_table', function(err, result) {
       done();
       if (err)
-       { console.error(err); response.send("Error " + err); }
+       { console.error(err); response.send("Error1 " + err); }
       else
        { response.render('views/frontpage', {results: result.rows} ); }
     });
