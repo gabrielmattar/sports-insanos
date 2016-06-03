@@ -2,12 +2,16 @@ var express = require('express');
 var app = express();
 var hbs = require('hbs');
 var mongoose = require('mongoose');
-var mongoURI = "mongodb://heroku_xzs5xcn3:fegemolegal123@ds023303.mlab.com:23303/heroku_xzs5xcn3";
+var mongoURI = "mongodb://admin:teste123@ds023303.mlab.com:23303/heroku_xzs5xcn3";
 
 mongoose.connect(mongoURI);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log("IT WORKS!");
+});
+
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
