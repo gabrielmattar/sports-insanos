@@ -122,17 +122,56 @@ app.post('/novotime', function (req, res) {
   res.render('frontpage.hbs');
 });
 
+app.post('/cadastroc', function (req, res) {
+  var timesc = req.body.nomet;
+  var times = [];
+    for(var time of timesc){
+      Time.findOne({nometime: time}, function(err, team){
+        if(err){
+          console.log(err);
+        }
+        else {
+          //User.findOne({username: req.user.username}, function(err, admi){
+          User.findOne({username: 'fegemo'}, function(err, admi){
+            if(err){
+              console.log(err);
+            }
+            else {
+              times.push(team._id);
+              if(times.length == req.body.numerot) {
+                var newCamp =  Camp({
+                  nome: req.body.nomec,
+                  numerotimes: req.body.numerot,
+                  chaves: {times: times},
+                  adm:admi
+                } );
+
+                newCamp.save(function(err) {
+                  if (err) throw err;
+
+                  console.log('Campeonato created!');
+                });
+              }
+            }
+          });
+        }
+      });
+    }
+
+  res.render('frontpage.hbs');
+});
 
 app.listen(app.get('port'), '0.0.0.0', function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 var User = require('./models/users');
 
 var Time = require('./models/time');
-console.log(db.collection('users').toObject());
+var Camp = require('./models/campeonato');
+/*console.log(db.collection('users').toObject());*/
 /*
 db.collection('users').findOne({})
 var newtime = Time ({
@@ -148,7 +187,7 @@ newtime.save(function(err) {
   console.log('time saved successfully!');
 });*/
 //>>>>>>> c46787aeeb377d951fa48aca96911e92285826d7
-=======
+//=======
 //Exemplo de uso do findOne
 app.get('/user/:uname', function(req, res) {
 
@@ -163,4 +202,4 @@ app.get('/user/:uname', function(req, res) {
     }
   });
 });
->>>>>>> 3fcb53a820c5c37078d4c427e9765a38266603ea
+//>>>>>>> 3fcb53a820c5c37078d4c427e9765a38266603ea

@@ -8,11 +8,12 @@ var campSchema =  new Schema({
     ref: 'users'
   },
   numerotimes: Number,
-  times: [{
-      type: Schema.Types.ObjectId, 
+  chaves:[{
+    times: [{
+      type: Schema.Types.ObjectId,
       ref: 'time'
     }]
-
+  }]
 });
 
 

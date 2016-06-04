@@ -73,47 +73,33 @@
     <div class='conteudo'>
 
       <div class='conteudo-cadastro'>
-        <form>
+        <form action='/cadastroc' method='post'>
            <strong>  Nome do Campeonato: </strong>
            <div class="alinhado" >
              <input type="text" name="nomec" placeholder="Nome" pattern="[^'\x22]+" title="Aspas inválida" required>
            </div>
            <strong>  Número de participantes: </strong>
            <div class="alinhado" >
-             <input type="number" min="0" name="nomec" placeholder="4" required>
+             <input type="number" min="0" name="numerot" placeholder="4" required>
 
            </div>
 
-             <button class='submit' type='button'>Submit</button>
+             <!--<button class='submit' type='button'>Submit</button>-->
 
            <strong>  Nome dos Times: </strong>
            <div class="alinhado" >
               <div id="times">
                <input type="text" name="nomet" placeholder="Nome time 1"  required>
-               <div id="participantes">
-                 <input type="text" name="nomep" placeholder="Nome participante 1" required>
-                 <input type="text" name="nomep" placeholder="Nome participante 2" required>
-                 <input type="text" name="nomep" placeholder="Nome participante 3" required>
-                 <input type="text" name="nomep" placeholder="Nome participante 4" required>
-               </div>
+
              </div>
            </div>
            <div class="alinhado" >
              <div id="times">
                <input type="text" name="nomet" placeholder="Nome time 2"  required>
-               <div id="participantes">
-                 <input type="text" name="nomep" placeholder="Nome participante 1" required>
-                 <input type="text" name="nomep" placeholder="Nome participante 2" required>
-                 <input type="text" name="nomep" placeholder="Nome participante 3" required>
-                 <input type="text" name="nomep" placeholder="Nome participante 4" required>
-               </div>
              </div>
            </div>
 
-           <div class="adicionar">
-              <button class='bmaismenos' type="button">-</button>
-              <button class='bmaismenos' type="button">+</button>
-           </div>
+
 
             <button class='next' type='submit'>Next</button>
 
