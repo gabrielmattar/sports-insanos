@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 var mongoose = require('mongoose');
 var mongoURI = "mongodb://admin:teste123@ds023303.mlab.com:23303/heroku_xzs5xcn3";
+var User = require('./models/users');
+var Time = require('./models/time');
 
 mongoose.connect(mongoURI);
 
@@ -28,6 +30,9 @@ fs.readdirSync(__dirname + '/models').forEach(function(filename) {
 });
 
 
+app.set('views', __dirname + '/views');
+app.set('view engine', hbs);
+
 app.get('/users', function(req, res) {
   mongoose.model('users').find(function(err, users) {
     res.send(users);
@@ -39,10 +44,6 @@ app.get('/time', function(req, res) {
     res.send(time);
   });
 });
-
-app.set('views', __dirname + '/views');
-app.set('view engine', hbs);
-
 
 
 app.get('/', function (req, res) {
@@ -62,7 +63,6 @@ app.get('/cadastro', function (req, res) {
 
 //Receber o formulario de cadastro de usuario
 app.post('/cadastro', function(req, res) {
-  var User = require('./models/users');
 
   // create a new user
   var newUser = User({
@@ -90,16 +90,53 @@ app.get('/criar-time', function (req, res) {
   res.render('criartime.hbs');
 });
 
+
+app.post('/novotime', function (req, res) {
+
+  var Usernames = req.body.unamep;
+  var UsersId = [];
+  for(var Username of Usernames){
+    User.findOne({
+      username: Username
+    }, function(err, usuario){
+      if(err){
+        console.log(err);
+      } else {
+        UsersId.push(usuario._id);
+      }
+    });
+  }
+  var newTime = Time ({
+    nometime: req.body.nomet,
+    integrantes: UsersId
+  } );
+
+  newTime.save(function(err) {
+    if (err) throw err;
+
+    console.log('Time created!');
+  });
+
+  res.render('frontpage.hbs');
+});
+
+
 app.listen(app.get('port'), '0.0.0.0', function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
 
-var User = require('./models/users');
-var Time = require('./models/time');
+//Exemplo de uso do findOne
+app.get('/user/:uname', function(req, res) {
 
-
-var newtime = Time ({
-  nome: 'Time de Teste',
-  integrantes: ['malucobeleza','SA']
-} );
+  User.findOne({
+    username: req.params.uname
+  }, function(err, usuario){
+    if(err){
+      console.log(err);
+    } else {
+      res.json(usuario);
+      console.log(usuario);
+    }
+  });
+});
