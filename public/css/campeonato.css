@@ -17,6 +17,39 @@
   color: black;
 }
 
+.botaocelulat{
+  float: right;
+  width: 60%;
+  background-color: 29a329;
+  height: 100%;
+  color: white;
+  text-align: center;
+  border-radius: 4px;
+
+}
+.fill-div {
+
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    background-color: transparent;
+    border: transparent;
+    color: white;
+    font-size: 25px;
+    cursor:pointer;
+}
+.botaocelulab{
+  float: right;
+  width: 60%;
+  background-color: white;
+  height: 100%;
+  color: green;
+  text-align: center;
+  border-color:#29a329;
+  margin-top: 0.2%;
+  border-radius: 4px;
+}
+
 .divitite {
   margin: 20px auto;
   width: 90%;
