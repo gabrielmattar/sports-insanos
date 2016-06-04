@@ -98,8 +98,11 @@ app.listen(app.get('port'), '0.0.0.0', function() {
 
 
 var User = require('./models/users');
+
 var Time = require('./models/time');
-console.log(db.users.findOne())
+console.log(db.collection('users').toObject());
+/*
+db.collection('users').findOne({})
 var newtime = Time ({
   nometime: 'Time de Teste',
   integrantes: [User.findOne({ nome: 'Gabriel' }),User.findOne({ nome: 'guilherme' })]
@@ -111,5 +114,5 @@ newtime.save(function(err) {
   if (err) throw err;
 
   console.log('time saved successfully!');
-});
+});*/
 //>>>>>>> c46787aeeb377d951fa48aca96911e92285826d7
