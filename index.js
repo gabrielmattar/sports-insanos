@@ -92,30 +92,30 @@ app.get('/criar-time', function (req, res) {
 
 
 app.post('/novotime', function (req, res) {
-
   var Usernames = req.body.unamep;
   var UsersId = [];
-  for(var Username of Usernames){
-    User.findOne({
-      username: Username
-    }, function(err, usuario){
-      if(err){
-        console.log(err);
-      } else {
-        UsersId.push(usuario._id);
-      }
-    });
-  }
-  var newTime = Time ({
-    nometime: req.body.nomet,
-    integrantes: UsersId
-  } );
+    for(var Username of Usernames){
+      User.findOne({username: Username}, function(err, usuario){
+        if(err){
+          console.log(err);
+        }
+        else {
+          UsersId.push(usuario._id);
+          if(UsersId.length == req.body.numjogadores) {
+            var newTime = Time ({
+              nometime: req.body.nomet,
+              integrantes: UsersId
+            } );
 
-  newTime.save(function(err) {
-    if (err) throw err;
+            newTime.save(function(err) {
+              if (err) throw err;
 
-    console.log('Time created!');
-  });
+              console.log('Time created!');
+            });
+          }
+        }
+      });
+    }
 
   res.render('frontpage.hbs');
 });
