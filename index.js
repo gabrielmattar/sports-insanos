@@ -79,6 +79,7 @@ app.post('/cadastro', function(req, res) {
     console.log('User created!');
   });
 
+  res.render('frontpage.hbs');
 });
 
 app.get('/campeonatochaves', function (req, res) {
