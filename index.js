@@ -62,7 +62,23 @@ app.get('/cadastro', function (req, res) {
 
 //Receber o formulario de cadastro de usuario
 app.post('/cadastro', function(req, res) {
-  console.log(req.body.user.name);
+  var User = require('./models/users');
+
+  // create a new user
+  var newUser = User({
+    nome: req.body.fname,
+    Sobrenome: req.body.lname,
+    username: req.body.uname,
+    password: req.body.senha,
+    sexo: req.body.sex
+  });
+
+  newUser.save(function(err) {
+    if (err) throw err;
+
+    console.log('User created!');
+  });
+
 });
 
 app.get('/campeonatochaves', function (req, res) {
@@ -80,26 +96,9 @@ app.listen(app.get('port'), '0.0.0.0', function() {
 
 var User = require('./models/users');
 var Time = require('./models/time');
-// create a new user
-var newusuario = User({
-  nome: 'Sir',
-  Sobrenome: 'Arthur',
-  username: 'SA',
-  password: 'password',
-  sexo: 'Masculino'
-});
 
 
 var newtime = Time ({
   nome: 'Time de Teste',
   integrantes: ['malucobeleza','SA']
 } );
-
-
-// Comentei essa parte pq tava dando pau ja que tamo sempre salvando o mesmo manolo no BD
-// // save the user
-// newUser.save(function(err) {
-//   if (err) throw err;
-//
-//   console.log('User created!');
-// });
