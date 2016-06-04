@@ -93,7 +93,7 @@ var newusuario = User({
 var newtime = Time ({
   nome: 'Time de Teste',
   integrantes: ['malucobeleza','SA']
-});
+} );
 
 
 // Comentei essa parte pq tava dando pau ja que tamo sempre salvando o mesmo manolo no BD
