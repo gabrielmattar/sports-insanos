@@ -72,82 +72,14 @@
     <div class='divitite'>
       <header id='nomecampeonato'><h1 >Nosso Campeonato Irado</h1></header>
       <div class='conteudo'>
-
-        <!-- Primeiro round! -->
-        <ul>
-           <li>&nbsp;</li>
-           <button type="submit" class="botaocelulat">+</button>
-           <li class="game game-top"><span class="celula">Time</span></li>
-           <li>&nbsp;</li>
-           <li class="game game-bottom "><span class="celula">Time</span></li>
-           <button type="submit" class="botaocelulab">+</button>
-           <li>&nbsp;</li>
-           <button type="submit" class="botaocelulat">+</button>
-           <li class="game game-top"><span class="celula">Time</span></li>
-           <li>&nbsp;</li>
-           <li class="game game-bottom "><span class="celula">Time</span></li>
-           <button type="submit" class="botaocelulab">+</button>
-           <li>&nbsp;</li>
-           <button type="submit" class="botaocelulat">+</button>
-           <li class="game game-top"><span class="celula">Time</span></li>
-           <li>&nbsp;</li>
-           <li class="game game-bottom "><span class="celula">Time</span></li>
-           <button type="submit" class="botaocelulab">+</button>
-           <li>&nbsp;</li>
-           <button type="submit" class="botaocelulat">+</button>
-           <li class="game game-top"><span class="celula">Time</span></li>
-           <li>&nbsp;</li>
-           <li class="game game-bottom "><span class="celula">Time</span></li>
-           <button type="submit" class="botaocelulab">+</button>
-           <li>&nbsp;</li>
-           <button type="submit" class="botaocelulat">+</button>
-           <li class="game game-top"><span class="celula">Time</span></li>
-           <li>&nbsp;</li>
-           <li class="game game-bottom "><span class="celula">Time</span></li>
-           <button type="submit" class="botaocelulab">+</button>
-           <li>&nbsp;</li>
-           <button type="submit" class="botaocelulat">+</button>
-           <li class="game game-top"><span class="celula">Time</span></li>
-           <li>&nbsp;</li>
-           <li class="game game-bottom "><span class="celula">Time</span></li>
-           <button type="submit" class="botaocelulab">+</button>
-           <li>&nbsp;</li>
-           <button type="submit" class="botaocelulat">+</button>
-           <li class="game game-top"><span class="celula">Time</span></li>
-           <li>&nbsp;</li>
-           <li class="game game-bottom "><span class="celula">Time</span></li>
-           <button type="submit" class="botaocelulab">+</button>
-           <li>&nbsp;</li>
-           <button type="submit" class="botaocelulat">+</button>
-           <li class="game game-top"><span class="celula">Time</span></li>
-           <li>&nbsp;</li>
-           <li class="game game-bottom "><span class="celula">Time</span></li>
-           <button type="submit" class="botaocelulab">+</button>
-           <li>&nbsp;</li>
-         </ul>
-
-
-         <!-- Segundo round! -->
-         <ul>
-           <li>&nbsp;</li>
-           <li class="game game-top"><span class="celula"><button type="next" class="fill-div" >Time</button></span></li>
-           <li>&nbsp;</li>
-           <li class="game game-bottom "><span class="celula">Time</span></li>
-           <li>&nbsp;</li>
-           <li class="game game-top"><span class="celula">Time</span></li>
-           <li>&nbsp;</li>
-           <li class="game game-bottom "><span class="celula">Time</span></li>
-           <li>&nbsp;</li>
-           <li class="game game-top"><span class="celula">Time</span></li>
-           <li>&nbsp;</li>
-           <li class="game game-bottom "><span class="celula">Time</span></li>
-           <li>&nbsp;</li>
-           <li class="game game-top"><span class="celula">Time</span></li>
-           <li>&nbsp;</li>
-           <li class="game game-bottom "><span class="celula">Time</span></li>
-           <li>&nbsp;</li>
-         </ul>
-
+          {{#each campeonato.chaves}}
+              <ul>
+                <li>&nbsp;</li>
+                  {{#each campeonato.chaves.times}}
+                      
+                  {{/each}}
+              </ul>
+          {{/each}}
 
          <!-- Quartas de finais! -->
          <ul>

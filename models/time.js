@@ -5,7 +5,7 @@ var timeSchema =  new Schema({
   nometime: String,
   integrantes: [{
     type: Schema.Types.ObjectId,
-    ref: 'users'
+    ref: 'User'
   }]
 });
 

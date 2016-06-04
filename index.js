@@ -1,5 +1,3 @@
-//<<<<<<< HEAD
-//=======
 var express = require('express');
 var app = express();
 var hbs = require('hbs');
@@ -9,6 +7,7 @@ var mongoose = require('mongoose');
 var mongoURI = "mongodb://admin:teste123@ds023303.mlab.com:23303/heroku_xzs5xcn3";
 var User = require('./models/users');
 var Time = require('./models/time');
+var Camp = require('./models/campeonato');
 
 mongoose.connect(mongoURI);
 
@@ -55,6 +54,48 @@ app.get('/', function (req, res) {
 app.get('/cadastrocamp', function (req, res) {
   res.render('cadastrocamp.hbs');
 });
+app.post('/cadastroc', function (req, res) {
+  var timesc = req.body.nomet;
+  var times = [];
+    for(var time of timesc){
+      Time.findOne({nometime: time}, function(err, team){
+        if(err){
+          console.log(err);
+        }
+        else {
+          //User.findOne({username: req.user.username}, function(err, admi){
+          User.findOne({username: 'fegemo'}, function(err, admi){
+            if(err){
+              console.log(err);
+            }
+            else {
+              times.push(team._id);
+              if(times.length == req.body.numerot) {
+
+                var newCamp =  Camp({
+                  nome: req.body.nomec,
+                  numerotimes: req.body.numerot,
+                  chaves: {times: times},
+                  adm:admi
+                } );
+
+                newCamp.save(function(err) {
+                  if (err) throw err;
+
+                  console.log('Campeonato created!');
+                });
+              }
+            }
+          });
+        }
+      });
+    }
+
+  res.render('frontpage.hbs');
+});
+
+
+
 app.get('/lista', function (req, res) {
   res.render('lista.hbs');
 });
@@ -84,8 +125,18 @@ app.post('/cadastro', function(req, res) {
   res.render('frontpage.hbs');
 });
 
-app.get('/campeonatochaves', function (req, res) {
-  res.render('campeonatochaves.hbs');
+app.get('/campeonatochaves/:nome', function (req, res) {
+  Camp.findOne({
+    nome: req.params.nome
+  }, function(err, campeonato){
+    if(err){
+      console.log(err);
+    } else {
+      res.render('campeonatochaves.hbs', {
+        campeonato : campeonato
+      });
+    }
+  });
 });
 
 app.get('/criar-time', function (req, res) {
@@ -122,55 +173,11 @@ app.post('/novotime', function (req, res) {
   res.render('frontpage.hbs');
 });
 
-app.post('/cadastroc', function (req, res) {
-  var timesc = req.body.nomet;
-  var times = [];
-    for(var time of timesc){
-      Time.findOne({nometime: time}, function(err, team){
-        if(err){
-          console.log(err);
-        }
-        else {
-          //User.findOne({username: req.user.username}, function(err, admi){
-          User.findOne({username: 'fegemo'}, function(err, admi){
-            if(err){
-              console.log(err);
-            }
-            else {
-              times.push(team._id);
-              if(times.length == req.body.numerot) {
-                var newCamp =  Camp({
-                  nome: req.body.nomec,
-                  numerotimes: req.body.numerot,
-                  chaves: {times: times},
-                  adm:admi
-                } );
-
-                newCamp.save(function(err) {
-                  if (err) throw err;
-
-                  console.log('Campeonato created!');
-                });
-              }
-            }
-          });
-        }
-      });
-    }
-
-  res.render('frontpage.hbs');
-});
 
 app.listen(app.get('port'), '0.0.0.0', function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
-
-//<<<<<<< HEAD
-var User = require('./models/users');
-
-var Time = require('./models/time');
-var Camp = require('./models/campeonato');
 /*console.log(db.collection('users').toObject());*/
 /*
 db.collection('users').findOne({})
@@ -202,4 +209,3 @@ app.get('/user/:uname', function(req, res) {
     }
   });
 });
-//>>>>>>> 3fcb53a820c5c37078d4c427e9765a38266603ea

@@ -5,13 +5,13 @@ var campSchema =  new Schema({
   nome: {type: String, required: true, unique: true},
   adm: {
     type: Schema.Types.ObjectId,
-    ref: 'users'
+    ref: 'User'
   },
   numerotimes: Number,
   chaves:[{
     times: [{
       type: Schema.Types.ObjectId,
-      ref: 'time'
+      ref: 'Time'
     }]
   }]
 });
