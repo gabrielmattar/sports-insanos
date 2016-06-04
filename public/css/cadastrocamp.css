@@ -33,7 +33,7 @@
   height: 30px;
   outline: 0;
 }
-.conteudo-cadastro #alinhado{
+.conteudo-cadastro .alinhado{
   padding-top: 20px;
   padding-bottom: 20px;
 
@@ -48,6 +48,13 @@
   line-height: 1em;
   font-weight: normal;
   text-align: center;
+
+}
+
+h2{
+  color: white;
+  font-size: 30px;
+  font-family: 'Catamaran', sans-serif;
 
 }
 ::-webkit-input-placeholder { /* For WebKit browsers */

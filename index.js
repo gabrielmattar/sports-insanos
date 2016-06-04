@@ -34,6 +34,11 @@ app.get('/users', function(req, res) {
   });
 });
 
+app.get('/time', function(req, res) {
+  mongoose.model('Time').find(function(err, time) {
+    res.send(time);
+  });
+});
 
 app.set('views', __dirname + '/views');
 app.set('view engine', hbs);
@@ -64,6 +69,9 @@ app.get('/campeonatochaves', function (req, res) {
   res.render('campeonatochaves.hbs');
 });
 
+app.get('/criar-time', function (req, res) {
+  res.render('criartime.hbs');
+});
 
 app.listen(app.get('port'), '0.0.0.0', function() {
   console.log('Node app is running on port', app.get('port'));
@@ -71,15 +79,22 @@ app.listen(app.get('port'), '0.0.0.0', function() {
 
 
 var User = require('./models/users');
-
+var Time = require('./models/time');
 // create a new user
-var newUser = User({
-  nome: 'Peter',
-  Sobrenome: 'Kil',
-  username: 'malucobeleza',
+var newusuario = User({
+  nome: 'Sir',
+  Sobrenome: 'Arthur',
+  username: 'SA',
   password: 'password',
   sexo: 'Masculino'
 });
+
+
+var newtime = Time ({
+  nome: 'Time de Teste',
+  integrantes: ['malucobeleza','SA']
+});
+
 
 // Comentei essa parte pq tava dando pau ja que tamo sempre salvando o mesmo manolo no BD
 // // save the user

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/frontpage.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/login.css">
-
+    <link rel="stylesheet" href="css/cadastrocamp.css">
     <link href='https://fonts.googleapis.com/css?family=Catamaran' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Goudy+Bookletter+1911' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Coda' rel='stylesheet' type='text/css'>
@@ -70,28 +70,37 @@
 
     </nav>
 
-
     <div class='conteudo'>
-        <div class='bolinha'>
-          <p>Crie <br>campeonatos <br><strong>INSANOS</strong></p>
-        </div>
-        <div class='bolinha'>
-          <p><br>Divirta-se <br><strong>DEMAIS</strong></p>
-        </div>
-        <div class='bolinha'>
-          <p><br>Pode enxugar essas lágrimas <br><strong>!!!</strong></p>
-        </div>
 
-        <div class='bolinha'>
-          <p><br>Cadastre-se de <br>GRÁTIS<br><strong>!!!!</strong></p>
-        </div>
-        <div class='bolinha'>
-          <p><br>Cara, o que tu tá esperando<br><strong>???</strong></p>
-        </div>
-        <div class='bolinha'>
-          <p><br>Voce não se arrependerá <br><strong>!!!</strong></p>
-        </div>
-    </div>
+      <div class='conteudo-cadastro'>
+        <form>
+          <h2> Criar Time </h2>
+           <strong>  Número de participantes: </strong>
+           <div class="alinhado" >
+             <input type="number" min="0" name="nomec" placeholder="4" required>
+
+           </div>
+
+             <button class='submit' type='button'>Submit</button>
+
+           <strong>  Nome do Time: </strong>
+           <div class="alinhado" >
+              <div id="times">
+               <input type="text" name="nomet" placeholder="Nome time"  required>
+               <div id="participantes">
+                 <input type="text" name="nomep" placeholder="Nome participante 1" required>
+                 <input type="text" name="nomep" placeholder="Nome participante 2" required>
+                 <input type="text" name="nomep" placeholder="Nome participante 3" required>
+                 <input type="text" name="nomep" placeholder="Nome participante 4" required>
+               </div>
+             </div>
+           </div>
+
+            <button class='next' type='submit'>Next</button>
+
+        </form>
+      </div>
+  </div>
 
     <footer>
       <ul class='footer'>
@@ -101,9 +110,10 @@
       </ul>
     </footer>
 
-    <script src='js/login.js'></script>
-    <script src='js/submenu.js'></script>
-    <script src='js/background.js'> </script>
+
+  <script src='js/login.js'></script>
+  <script src='js/submenu.js'></script>
+  <script src='js/background.js'> </script>
   </body>
 
 </hmtl>
