@@ -96,7 +96,6 @@ app.post('/cadastroc', function (req, res) {
 
                 newCamp.save(function(err) {
                   if (err) throw err;
-
                   console.log('Campeonato created!');
                 });
               }
@@ -113,7 +112,7 @@ app.post('/cadastroc', function (req, res) {
 app.get('/lista', function (req, res) {
   if(req.user){
     var cchave =[];
-    Camp.find({adm: req.user.username} ,function(err, campeonato){
+    Camp.find({adm: req.user.username}, function(err, campeonato){
       if(err){
         console.log(err);
       } else {
@@ -144,10 +143,11 @@ app.get('/lista', function (req, res) {
   }
   else{
     var cchave =[];
-    Camp.find({},{},{limit : 10} ,function(err, campeonato){
+    Camp.find({},{},{limit : 10}, function(err, campeonato){
       if(err){
         console.log(err);
       } else {
+
         for(camp of campeonato){
           var conjunto = [];
           for(var i=0;i<camp.numerotimes;i++){
@@ -276,6 +276,7 @@ app.get('/campeonatochaves/:nome', function (req, res) {
     if(err){
       console.log(err);
     } else {
+
       res.render('campeonatochaves.hbs', {
         campeonato : campeonato
       });
@@ -306,7 +307,6 @@ app.post('/novotime', function (req, res) {
 
             newTime.save(function(err) {
               if (err) throw err;
-
               console.log('Time created!');
             });
           }
@@ -350,6 +350,20 @@ app.get('/user/:uname', function(req, res) {
     } else {
       res.json(usuario);
       console.log(usuario);
+    }
+  });
+});
+
+app.get('/time/:tname', function(req, res) {
+
+  Time.findOne({
+    nometime: req.params.tname
+  }, function(err, time){
+    if(err){
+      console.log(err);
+    } else {
+      res.json(time);
+      console.log(time);
     }
   });
 });
