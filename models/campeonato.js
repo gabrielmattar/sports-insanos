@@ -16,9 +16,17 @@ var campSchema =  new Schema({
   }]
 });
 
+
 campSchema.pre('find', function(popula) {
   // do stuff
-  console.log("deu");
+  this.populate('adm');
+  this.populate('chaves.times');
+  popula();
+});
+
+campSchema.pre('findOne', function(popula) {
+  // do stuff
+  this.populate('adm');
   this.populate('chaves.times');
   popula();
 });

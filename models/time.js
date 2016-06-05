@@ -11,7 +11,6 @@ var timeSchema =  new Schema({
 
 timeSchema.pre('find', function(popula) {
   // do stuff
-  console.log("deu");
   this.populate('integrantes');
   popula();
 });
