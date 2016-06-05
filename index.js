@@ -272,13 +272,12 @@ app.post('/cadastro', function(req, res) {
 app.get('/campeonatochaves/:nome', function (req, res) {
   Camp.findOne({
     nome: req.params.nome
-  }, function(err, campeonato){
+  }, function(err, camp){
     if(err){
       console.log(err);
     } else {
-
       res.render('campeonatochaves.hbs', {
-        campeonato : campeonato
+        campeonato : camp
       });
     }
   });
