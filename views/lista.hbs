@@ -83,16 +83,17 @@
 
             <th id = 'identificadores'><strong>CAMPEONATO</strong></th>
             <th id = 'identificadores'><strong>N# DE PARTICIPANTES</strong></th>
-            <th id = 'identificadores'><strong> CONCLUIDO</strong></th>
+            <th id = 'identificadores'><strong> CONCLUIDO (%)</strong></th>
             <th id = 'identificadores'><strong>VENCEDOR</strong></th>
 
         </tr>
-        {{#each campeonato}}
+        {{#each cchave}}
+
           <tr>
-              <td id = 'items'>{{nome}}</td>
-              <td id = 'items'>{{numerotimes}}</td>
-              <td id = 'items'>20%</td>
-              <td id = 'items'>nome</td>
+              <td id = 'items'>{{0.nome}}</td>
+              <td id = 'items'>{{0.numerotimes}}</td>
+              <td id = 'items'>{{1}}</td>
+              <td id = 'items'>{{2}} </td>
           </tr>
         {{/each}}
         </table>

@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var hbs = require('hbs');
+var _ = require('underscore');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var mongoose = require('mongoose');
@@ -8,6 +9,7 @@ var mongoURI = "mongodb://admin:teste123@ds023303.mlab.com:23303/heroku_xzs5xcn3
 var User = require('./models/users');
 var Time = require('./models/time');
 var Camp = require('./models/campeonato');
+var ObjectId = require('mongodb').ObjectID;
 
 
 var cookieParser = require('cookie-parser');
@@ -110,14 +112,32 @@ app.post('/cadastroc', function (req, res) {
 
 
 app.get('/lista', function (req, res) {
-  Camp.find({}, function(err, campeonato){
+  var cchave =[];
+  Camp.find({},{},{limit : 10} ,function(err, campeonato){
     if(err){
       console.log(err);
     } else {
-      
+      for(camp of campeonato){
+        var conjunto = [];
+        for(var i=0;i<camp.numerotimes;i++){
+          if(Math.pow(2,i)==camp.numerotimes){
+            var perct = (camp.chaves.length/i)*100;
+            if(perct>=100){
+              perct=100;
+              var winner = _.last(camp.chaves);
+              var winner = winner.times[0];
+
+              conjunto.push(camp,perct,winner);
+            }
+            break;
+          }
+        }
+        cchave.push(conjunto);
+      }
       res.render('lista.hbs', {
 
-        campeonato : campeonato
+        //campeonato : campeonato,
+        cchave : cchave
       });
     }
   });
@@ -143,9 +163,52 @@ app.post('/Search', function(req, res){
 
   });
 });
+/*
+app.get('/lista', function (req, res) {
+  var cchave =[];
+  Camp.find({}, function(err, campeonato){
+    if(err){
+      console.log(err);
+    } else {
+
+        for(camp of campeonato){
+          var winner = _.last(camp.chaves);
+          winner = winner.times[1];
+          User.find({_id: ObjectId(winner)}, function(err, win){
+            console.log(win);
+            if(err){
+              console.log(err);
+            }
+            else{
+            var conjunto = [];
+            for(var i=0;i<camp.numerotimes;i++){
+              if(Math.pow(2,i)==camp.numerotimes){
+                var perct = (camp.chaves.length/i)*100;
+                if(perct>=100){
+                  perct=100;
+
+                  conjunto.push(camp,perct,win.nometime);
+                    }
+                }
+                break;
+              }
+              cchave.push(conjunto);
+            }
+
+          });
+        }
 
 
+      res.render('lista.hbs', {
 
+        //campeonato : campeonato,
+        cchave : cchave
+      });
+
+    }
+  });
+});
+*/
 app.get('/cadastro', function (req, res) {
   res.render('cadastro.hbs');
 });
