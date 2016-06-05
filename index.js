@@ -84,7 +84,7 @@ app.post('/cadastroc', function (req, res) {
               console.log(err);
             }
             else {
-              times.push(team._id);
+              times.push(team);
               if(times.length == req.body.numerot) {
 
                 var newCamp =  Camp({
