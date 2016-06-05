@@ -110,38 +110,73 @@ app.post('/cadastroc', function (req, res) {
 });
 
 
-
 app.get('/lista', function (req, res) {
-  var cchave =[];
-  Camp.find({},{},{limit : 10} ,function(err, campeonato){
-    if(err){
-      console.log(err);
-    } else {
-      for(camp of campeonato){
-        var conjunto = [];
-        for(var i=0;i<camp.numerotimes;i++){
-          if(Math.pow(2,i)==camp.numerotimes){
-            var perct = (camp.chaves.length/i)*100;
-            if(perct>=100){
-              perct=100;
-              var winner = _.last(camp.chaves);
-              var winner = winner.times[0];
+  if(req.user){
+    var cchave =[];
+    Camp.find({adm: req.user.username} ,function(err, campeonato){
+      if(err){
+        console.log(err);
+      } else {
+        for(camp of campeonato){
+          var conjunto = [];
+          for(var i=0;i<camp.numerotimes;i++){
+            if(Math.pow(2,i)==camp.numerotimes){
+              var perct = (camp.chaves.length/i)*100;
+              if(perct>=100){
+                perct=100;
+                var winner = _.last(camp.chaves);
+                var winner = winner.times[0];
 
-              conjunto.push(camp,perct,winner);
+                conjunto.push(camp,perct,winner);
+              }
+              break;
             }
-            break;
           }
+          cchave.push(conjunto);
         }
-        cchave.push(conjunto);
-      }
-      res.render('lista.hbs', {
+        res.render('lista.hbs', {
 
-        //campeonato : campeonato,
-        cchave : cchave
-      });
-    }
-  });
+          //campeonato : campeonato,
+          cchave : cchave
+        });
+      }
+    });
+  }
+  else{
+    var cchave =[];
+    Camp.find({},{},{limit : 10} ,function(err, campeonato){
+      if(err){
+        console.log(err);
+      } else {
+        for(camp of campeonato){
+          var conjunto = [];
+          for(var i=0;i<camp.numerotimes;i++){
+            if(Math.pow(2,i)==camp.numerotimes){
+              var perct = (camp.chaves.length/i)*100;
+              if(perct>=100){
+                perct=100;
+                var winner = _.last(camp.chaves);
+                var winner = winner.times[0];
+
+                conjunto.push(camp,perct,winner);
+              }
+              break;
+            }
+          }
+          cchave.push(conjunto);
+        }
+        res.render('lista.hbs', {
+
+          //campeonato : campeonato,
+          cchave : cchave
+        });
+      }
+    });
+
+
+  }
 });
+
 
 app.post('/Search', function(req, res){
   Camp.findOne({   nome: req.body.procuraCamp  }, function(err,campeonato){
