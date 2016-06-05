@@ -72,8 +72,8 @@
 
     <div class = 'conteudo'>
       <div id="pesquisa">
-        <form>
-          <input type="text" placeholder="Search..." pattern="[^'\x22]+" title="Proibido aspas" >
+        <form action='/Search' method='post'>
+          <input type="text" name="procuraCamp" placeholder="Search..." pattern="[^'\x22]+" title="Proibido aspas" >
           <button class="search" type='searchbutton' >Search</button>
         </form>
       </div >
@@ -87,54 +87,14 @@
             <th id = 'identificadores'><strong>VENCEDOR</strong></th>
 
         </tr>
-        <tr>
-            <td id = 'items'>Computação</td>
-            <td id = 'items'>8</td>
-            <td id = 'items'>20%</td>
-            <td id = 'items'>Mattar</td>
-        </tr>
-        <tr>
-            <td id = 'items'>Nosso Campeonato</td>
-            <td id = 'items'>4</td>
-            <td id = 'items'>100%</td>
-            <td id = 'items'>Marchezini</td>
-        </tr>
-        <tr>
-            <td id = 'items'>test</td>
-            <td id = 'items'>test1</td>
-            <td id = 'items'>test2</td>
-            <td id = 'items'>test3</td>
-        </tr>
-        <tr>
-            <td id = 'items'>test</td>
-            <td id = 'items'>test1</td>
-            <td id = 'items'>test2</td>
-            <td id = 'items'>test3</td>
-        </tr>
-        <tr>
-            <td id = 'items'>test</td>
-            <td id = 'items'>test1</td>
-            <td id = 'items'>test2</td>
-            <td id = 'items'>test3</td>
-        </tr>
-        <tr>
-            <td id = 'items'>test</td>
-            <td id = 'items'>test1</td>
-            <td id = 'items'>test2</td>
-            <td id = 'items'>test3</td>
-        </tr>
-        <tr>
-            <td id = 'items'>test</td>
-            <td id = 'items'>test1</td>
-            <td id = 'items'>test2</td>
-            <td id = 'items'>test3</td>
-        </tr>
-        <tr>
-            <td id = 'items'>test</td>
-            <td id = 'items'>test1</td>
-            <td id = 'items'>test2</td>
-            <td id = 'items'>test3</td>
-        </tr>
+        {{#each campeonato}}
+          <tr>
+              <td id = 'items'>{{nome}}</td>
+              <td id = 'items'>{{numerotimes}}</td>
+              <td id = 'items'>20%</td>
+              <td id = 'items'>nome</td>
+          </tr>
+        {{/each}}
         </table>
       </div>
     </div>

@@ -9,6 +9,19 @@ var User = require('./models/users');
 var Time = require('./models/time');
 var Camp = require('./models/campeonato');
 
+
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
+var flash        = require('connect-flash');
+app.use(cookieParser('lalala'));
+app.use(session({
+  secret: 'lalala',
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(flash());
+
+
 mongoose.connect(mongoURI);
 
 var db = mongoose.connection;
@@ -97,8 +110,41 @@ app.post('/cadastroc', function (req, res) {
 
 
 app.get('/lista', function (req, res) {
-  res.render('lista.hbs');
+  Camp.find({}, function(err, campeonato){
+    if(err){
+      console.log(err);
+    } else {
+      
+      res.render('lista.hbs', {
+
+        campeonato : campeonato
+      });
+    }
+  });
 });
+
+app.post('/Search', function(req, res){
+  Camp.findOne({   nome: req.body.procuraCamp  }, function(err,campeonato){
+    if (err){
+
+      console.log(err);
+
+    }
+    else if (campeonato!= null){
+      res.render('campeonatochaves.hbs', {
+        campeonato : campeonato
+      });
+
+    }
+    else{
+      //req.flash('success', 'You are successfully using req-flash')/
+      res.render('lista.hbs');
+    }
+
+  });
+});
+
+
 
 app.get('/cadastro', function (req, res) {
   res.render('cadastro.hbs');
