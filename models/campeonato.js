@@ -16,7 +16,12 @@ var campSchema =  new Schema({
   }]
 });
 
-
+campSchema.pre('find', function(popula) {
+  // do stuff
+  console.log("deu");
+  this.populate('chaves.times');
+  popula();
+});
 
 
 var Camp = mongoose.model('Camp', campSchema);
