@@ -186,6 +186,8 @@ app.post('/Search', function(req, res){
 
     }
     else if (campeonato!= null){
+
+
       res.render('campeonatochaves.hbs', {
         campeonato : campeonato
       });
@@ -269,19 +271,6 @@ app.post('/cadastro', function(req, res) {
   res.render('frontpage.hbs');
 });
 
-app.get('/campeonatochaves/:nome', function (req, res) {
-  Camp.findOne({
-    nome: req.params.nome
-  }, function(err, camp){
-    if(err){
-      console.log(err);
-    } else {
-      res.render('campeonatochaves.hbs', {
-        campeonato : camp
-      });
-    }
-  });
-});
 
 app.get('/criar-time', function (req, res) {
   res.render('criartime.hbs');
@@ -321,48 +310,17 @@ app.listen(app.get('port'), '0.0.0.0', function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
-/*console.log(db.collection('users').toObject());*/
-/*
-db.collection('users').findOne({})
-var newtime = Time ({
-  nometime: 'Time de Teste',
-  integrantes: [User.findOne({ nome: 'Gabriel' }),User.findOne({ nome: 'guilherme' })]
-} );
-
-
-
-newtime.save(function(err) {
-  if (err) throw err;
-
-  console.log('time saved successfully!');
-});*/
-//>>>>>>> c46787aeeb377d951fa48aca96911e92285826d7
-//=======
-//Exemplo de uso do findOne
-app.get('/user/:uname', function(req, res) {
-
-  User.findOne({
-    username: req.params.uname
-  }, function(err, usuario){
-    if(err){
-      console.log(err);
-    } else {
-      res.json(usuario);
-      console.log(usuario);
-    }
-  });
+hbs.registerHelper('if_even', function(conditional, options) {
+  if((conditional % 2) == 0) {
+    return options.fn(this);
+  } else {
+    return options.inverse(this);
+  }
 });
-
-app.get('/time/:tname', function(req, res) {
-
-  Time.findOne({
-    nometime: req.params.tname
-  }, function(err, time){
-    if(err){
-      console.log(err);
-    } else {
-      res.json(time);
-      console.log(time);
-    }
-  });
+hbs.registerHelper('if_odd', function(conditional, options) {
+  if((conditional % 2) != 0) {
+    return options.fn(this);
+  } else {
+    return options.inverse(this);
+  }
 });

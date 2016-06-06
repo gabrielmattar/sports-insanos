@@ -76,8 +76,17 @@
           {{#each campeonato.chaves}}
               <ul>
                 <li>&nbsp;</li>
-                  {{#each campeonato.chaves.times}} <!-- eh isso mesmo? ou eh so times?-->
-
+                  {{#each times}} <!-- eh isso mesmo? ou eh so times?-->
+                    {{#if_even @index}}
+                      <li class="game game-top"><span class="celula">
+                        <button type="next" class="fill-div" name='{{nometime}}'>{{nometime}}</button></span></li>
+                      <li>&nbsp;</li>
+                    {{/if_even}}
+                    {{#if_odd @index}}
+                      <li class="game game-bottom"><span class="celula">
+                        <button type="next" class="fill-div-green" name='{{nometime}}'>{{nometime}}</button></span></li>
+                      <li>&nbsp;</li>
+                    {{/if_odd}}
                   {{/each}}
               </ul>
           {{/each}}
