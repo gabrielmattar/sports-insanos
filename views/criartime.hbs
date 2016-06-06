@@ -78,20 +78,23 @@
 
              <strong>  Número de participantes: </strong>
              <div class="alinhado" >
-               <input type="numbero" min="0" name="numjogadores" placeholder="4" required>
-                <button class='next' type='submit'>Next</button>
+               <input type="number" min="0" name="numbero" placeholder="4" required>
+
              </div>
+            <button class='next' type='submit'>Next</button>
           </form>
           <form action='/novotime' method='post'>
            <strong>  Nome do Time: </strong>
            <div class="alinhado" >
 
               <div id="times">
+                <input type="hidden" name="numjogadores" value="{{vetor.length}}">
+
                <input type="text" name="nomet" placeholder="Nome time"  required>
-               <div id="participantes">
-                 <input type="hidden" name="number" value={{numerob}}>
+
+                <div id="participantes">
                  {{#each vetor}}
-                 <input type="text" name="unamep" placeholder="Nome participante {{0}}" required>
+                 <input type="text" name="unamep" placeholder="Nome participante {{this}}" required>
                 {{/each}}
                </div>
              </div>
