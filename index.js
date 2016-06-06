@@ -287,8 +287,24 @@ app.get('/criar-time', function (req, res) {
   res.render('criartime.hbs');
 });
 
+app.post('/novapag', function(req,res){
+    var numerob = req.body.numbero;
+    var vetor =[];
+    for(var i=0;i<numerob;i++){
+      vetor.push(i);
+    }
+
+    res.render('/criartime.hbs', {
+      vetor : vetor,
+      numerob :numerob
+    });
+
+});
+
 
 app.post('/novotime', function (req, res) {
+
+
   var Usernames = req.body.unamep;
   var UsersId = [];
     for(var Username of Usernames){

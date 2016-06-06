@@ -73,24 +73,26 @@
     <div class='conteudo'>
 
       <div class='conteudo-cadastro'>
-        <form action='/novotime' method='post'>
+        <form action='/novapag' method='post'>
           <h2> Criar Time </h2>
-           <strong>  Número de participantes: </strong>
-           <div class="alinhado" >
-             <input type="number" min="0" name="numjogadores" placeholder="4" required>
 
-           </div>
-
-
+             <strong>  Número de participantes: </strong>
+             <div class="alinhado" >
+               <input type="numbero" min="0" name="numjogadores" placeholder="4" required>
+                <button class='next' type='submit'>Next</button>
+             </div>
+          </form>
+          <form action='/novotime' method='post'>
            <strong>  Nome do Time: </strong>
            <div class="alinhado" >
+
               <div id="times">
                <input type="text" name="nomet" placeholder="Nome time"  required>
                <div id="participantes">
-                 <input type="text" name="unamep" placeholder="Nome participante 1" required>
-                 <input type="text" name="unamep" placeholder="Nome participante 2" required>
-                 <input type="text" name="unamep" placeholder="Nome participante 3" required>
-                 <input type="text" name="unamep" placeholder="Nome participante 4" required>
+                 <input type="hidden" name="number" value={{numerob}}>
+                 {{#each vetor}}
+                 <input type="text" name="unamep" placeholder="Nome participante {{0}}" required>
+                {{/each}}
                </div>
              </div>
            </div>
