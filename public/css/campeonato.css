@@ -29,7 +29,6 @@
 }
 .fill-div {
 
-    height: 100%;
     width: 100%;
     text-decoration: none;
     background-color: transparent;
@@ -40,7 +39,6 @@
 }
 .fill-div-green {
 
-    height: 100%;
     width: 100%;
     text-decoration: none;
     background-color: transparent;
@@ -102,7 +100,7 @@
 .celula {
   float:left;
   width: 60%;
-  height: 30px;
+  height: auto;
   padding-bottom: 7px;
   font-size: 25px;
   font-family: 'Catamaran', sans-serif;
@@ -203,7 +201,6 @@ screen and (max-width: 860px){
   .celula {
     float:left;
     font-size: 15px;
-    height: auto;
     padding-bottom: 0;
   }
 }
