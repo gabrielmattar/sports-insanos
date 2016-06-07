@@ -73,30 +73,31 @@
     <div class='conteudo'>
 
       <div class='conteudo-cadastro'>
-        <form action='/cadastroc' method='post'>
+        <form action='/novapagc' method='post'>
            <strong>  Nome do Campeonato: </strong>
            <div class="alinhado" >
-             <input type="text" name="nomec" placeholder="Nome" pattern="[^'\x22]+" title="Aspas inválida" required>
+             <input type="text" name="nomeca" placeholder="Nome" pattern="[^'\x22]+" title="Aspas inválida" required>
            </div>
            <strong>  Número de participantes: </strong>
            <div class="alinhado" >
-             <input type="number" min="0" name="numerot" placeholder="4" required>
+             <input type="number" min="0" name="numerot" placeholder="4" pattern="pow(2)" required>
 
            </div>
 
              <!--<button class='submit' type='button'>Submit</button>-->
-
+            <button class='next' type='submit'>Next</button>
+        </form>
+        <form action='/cadastroc' method='post'>
+           <input type="hidden" name="nomec" value="{{enviacamp}}">
+          <input type="hidden" name="numerot" value="{{vetor.length}}">
            <strong>  Nome dos Times: </strong>
            <div class="alinhado" >
+             {{#each vetor}}
               <div id="times">
-               <input type="text" name="nomet" placeholder="Nome time 1"  required>
+               <input type="text" name="nomet" placeholder="Nome time {{this}}"  required>
+             </div>
+             {{/each}}
 
-             </div>
-           </div>
-           <div class="alinhado" >
-             <div id="times">
-               <input type="text" name="nomet" placeholder="Nome time 2"  required>
-             </div>
            </div>
            <div class="alinhado" >
              <div id="times">
@@ -108,6 +109,7 @@
                <input type="text" name="nomet" placeholder="Nome time 4"  required>
              </div>
            </div>
+
 
 
 

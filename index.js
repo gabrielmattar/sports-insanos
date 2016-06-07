@@ -66,6 +66,21 @@ app.get('/', function (req, res) {
   res.render('frontpage.hbs');
 });
 
+app.post('/novapagc', function(req,res){
+    var numerob = req.body.numerot;
+    var vetor =[];
+    for(var i=0;i<numerob;i++){
+      vetor.push(i+1);
+    }
+    var enviacamp = req.body.nomeca;
+    res.render('cadastrocamp.hbs', {
+      vetor : vetor,
+      enviacamp :enviacamp
+
+    });
+
+});
+
 app.get('/cadastrocamp', function (req, res) {
   res.render('cadastrocamp.hbs');
 });
@@ -84,7 +99,7 @@ app.post('/cadastroc', function (req, res) {
               console.log(err);
             }
             else {
-              times.push(team._id);
+              times.push(team);
               if(times.length == req.body.numerot) {
                 var keys = [];
                 keys.push({
@@ -137,16 +152,24 @@ app.get('/lista', function (req, res) {
         console.log(err);
       } else {
         for(camp of campeonato){
+
           var conjunto = [];
           for(var i=0;i<camp.numerotimes;i++){
             if(Math.pow(2,i)==camp.numerotimes){
               var perct = (camp.chaves.length/i)*100;
-              if(perct>=100){
+              if(perct>100){
                 perct=100;
                 var winner = _.last(camp.chaves);
                 var winner = winner.times[0];
 
                 conjunto.push(camp,perct,winner);
+              }
+              else{
+
+                var winner = "-";
+
+                conjunto.push(camp,perct,winner);
+
               }
               break;
             }
@@ -173,12 +196,19 @@ app.get('/lista', function (req, res) {
           for(var i=0;i<camp.numerotimes;i++){
             if(Math.pow(2,i)==camp.numerotimes){
               var perct = (camp.chaves.length/i)*100;
-              if(perct>=100){
+              if(perct>100){
                 perct=100;
                 var winner = _.last(camp.chaves);
                 var winner = winner.times[0];
 
                 conjunto.push(camp,perct,winner);
+              }
+              else{
+
+                var winner = "-";
+
+                conjunto.push(camp,perct,winner);
+
               }
               break;
             }
@@ -296,8 +326,24 @@ app.get('/criar-time', function (req, res) {
   res.render('criartime.hbs');
 });
 
+app.post('/novapag', function(req,res){
+    var numerob = req.body.numbero;
+    var vetor =[];
+    for(var i=0;i<numerob;i++){
+      vetor.push(i+1);
+    }
+
+    res.render('criartime.hbs', {
+      vetor : vetor,
+      numerob :numerob
+    });
+
+});
+
 
 app.post('/novotime', function (req, res) {
+
+
   var Usernames = req.body.unamep;
   var UsersId = [];
     for(var Username of Usernames){
@@ -307,6 +353,7 @@ app.post('/novotime', function (req, res) {
         }
         else {
           UsersId.push(usuario._id);
+
           if(UsersId.length == req.body.numjogadores) {
             var newTime = Time ({
               nometime: req.body.nomet,
