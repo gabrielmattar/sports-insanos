@@ -131,10 +131,12 @@
   border-right: 2px solid black;
   min-height: 50px;
 }
-#winner > li {
+
+
+ul:last-child > li {
   border: 0;
 }
-#winner .celula{
+ul:last-child .celula{
   background-color: #0066ff;
   color: white;
 }

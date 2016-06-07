@@ -16,19 +16,18 @@ var campSchema =  new Schema({
   }]
 });
 
-
-campSchema.pre('find', function(popula) {
+campSchema.pre('find', function(next) {
   // do stuff
   this.populate('adm');
   this.populate('chaves.times');
-  popula();
+  next();
 });
 
-campSchema.pre('findOne', function(popula) {
+campSchema.pre('findOne', function(next) {
   // do stuff
   this.populate('adm');
   this.populate('chaves.times');
-  popula();
+  next();
 });
 
 

@@ -86,18 +86,38 @@ app.post('/cadastroc', function (req, res) {
             else {
               times.push(team._id);
               if(times.length == req.body.numerot) {
+                var keys = [];
+                keys.push({
+                  times: times
+                })
+                var i = times.length/2;
+                //Nessa sessao abaixo usamos um time em branco para preencher o resto das chaves
+                //Se a entrada foram 8 times entao vao haver 3 chaves, a primeira com 8 times a
+                //segunda com 4 a terceira com 2 e a primeira com 1
+                Time.findOne({nometime: '-'}, function(err, branco){
+                  while(i >= 1){
+                    var brancos = [];
+                    for(var j = 0; j < i; j++){
+                      brancos.push(branco._id);
+                    }
+                    keys.push({
+                      times: brancos
+                    })
+                    i=i/2;
+                  }
+                  var newCamp =  Camp({
+                    nome: req.body.nomec,
+                    numerotimes: req.body.numerot,
+                    chaves: keys,
+                    adm:admi
+                  } );
 
-                var newCamp =  Camp({
-                  nome: req.body.nomec,
-                  numerotimes: req.body.numerot,
-                  chaves: {times: times},
-                  adm:admi
-                } );
-
-                newCamp.save(function(err) {
-                  if (err) throw err;
-                  console.log('Campeonato created!');
+                  newCamp.save(function(err) {
+                    if (err) throw err;
+                    console.log('Campeonato created!');
+                  });
                 });
+
               }
             }
           });

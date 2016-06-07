@@ -14,6 +14,11 @@ timeSchema.pre('find', function(popula) {
   this.populate('integrantes');
   popula();
 });
+timeSchema.pre('findOne', function(popula) {
+  // do stuff
+  this.populate('integrantes');
+  popula();
+});
 
 var Time = mongoose.model('Time', timeSchema);
 module.exports = Time;
