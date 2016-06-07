@@ -156,9 +156,15 @@ app.get('/lista', function (req, res) {
           var conjunto = [];
           for(var i=0;i<camp.numerotimes;i++){
             if(Math.pow(2,i)==camp.numerotimes){
-              var perct = (camp.chaves.length/i)*100;
-              if(perct>100){
-                perct=100;
+              for (var j = 0; j<camp.chaves.length ;j++){
+                if((camp.chaves[j].times[0].nometime)=="-"){
+                  atual=j-1;
+                  break;
+                }
+              }
+              var perct = (atual/i)*100;
+              if(perct==100){
+
                 var winner = _.last(camp.chaves);
                 var winner = winner.times[0];
 
@@ -195,9 +201,17 @@ app.get('/lista', function (req, res) {
           var conjunto = [];
           for(var i=0;i<camp.numerotimes;i++){
             if(Math.pow(2,i)==camp.numerotimes){
-              var perct = (camp.chaves.length/i)*100;
-              if(perct>100){
-                perct=100;
+              //var atual = camp.chaves.length ;
+              for (var j = 0; j<camp.chaves.length ;j++){
+                if((camp.chaves[j].times[0].nometime)=="-"){
+                  atual=j-1;
+                  break;
+                }
+              }
+              var perct = (atual/i)*100;
+
+              if(perct==100){
+
                 var winner = _.last(camp.chaves);
                 var winner = winner.times[0];
 
@@ -244,8 +258,8 @@ app.post('/Search', function(req, res){
 
     }
     else{
-      //req.flash('success', 'You are successfully using req-flash')/
-      res.render('lista.hbs');
+      req.flash('error', 'Campeonato não encontrado');
+      res.redirect('/lista');
     }
 
   });
