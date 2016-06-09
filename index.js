@@ -12,6 +12,7 @@ var Camp = require('./models/campeonato');
 var ObjectId = require('mongodb').ObjectID;
 
 
+
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
 var flash        = require('connect-flash');
@@ -144,6 +145,7 @@ app.post('/cadastroc', function (req, res) {
 });
 
 
+
 app.get('/lista', function (req, res) {
   if(req.user){
     var cchave =[];
@@ -183,7 +185,8 @@ app.get('/lista', function (req, res) {
           cchave.push(conjunto);
         }
         res.render('lista.hbs', {
-
+          error : req.flash('error'),
+          success : req.flash('success'),
           //campeonato : campeonato,
           cchave : cchave
         });
@@ -212,10 +215,7 @@ app.get('/lista', function (req, res) {
 
               if(perct==100){
 
-                var winner = _.last(camp.chaves);
-                var winner = winner.times[0];
-
-                conjunto.push(camp,perct,winner);
+                var winner = _.last(camp.chaves);    uls[i].classList.toggle('aparece');
               }
               else{
 
@@ -230,7 +230,8 @@ app.get('/lista', function (req, res) {
           cchave.push(conjunto);
         }
         res.render('lista.hbs', {
-
+          error : req.flash('error'),
+          success : req.flash('success'),
           //campeonato : campeonato,
           cchave : cchave
         });
@@ -240,6 +241,7 @@ app.get('/lista', function (req, res) {
 
   }
 });
+
 
 
 app.post('/Search', function(req, res){

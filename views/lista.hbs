@@ -70,20 +70,20 @@
 
     </nav>
 
+    {{#if success}}
+      <div class="sucesso" role="alert">
 
+        <strong>Sucesso!</strong> {{success}}
+      </div>
+    {{/if}}
+    {{#if error}}
+      <div class="error" role="alert" id="errolista">
+
+        <div class="textoerro"><strong>Erro!</strong> {{error}}</div>
+      </div>
+    {{/if}}
     <div class = 'conteudo'>
-      {{#if success}}
-        <div class="alert alert-success alert-dismissible fade in" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <strong>Sucesso!</strong> {{success}}
-        </div>
-      {{/if}}
-      {{#if error}}
-        <span class="flash" role="alert">
 
-          <strong>Erro!</strong> {{error}}
-        </span>
-      {{/if}}
       <div id="pesquisa">
         <form action='/Search' method='post'>
           <input type="text" name="procuraCamp" placeholder="Search..." pattern="[^'\x22]+" title="Proibido aspas" >
