@@ -71,9 +71,9 @@
     </nav>
 
     {{#if success}}
-      <div class="sucesso" role="alert">
+      <div class="success" role="alert" id="acertolista">
+          <div class="textoacerto"><strong>Sucesso!</strong> {{success}}</div>
 
-        <strong>Sucesso!</strong> {{success}}
       </div>
     {{/if}}
     {{#if error}}
@@ -124,6 +124,9 @@
 
     <script src='js/login.js'></script>
     <script src='js/submenu.js'></script>
+
+      <script src='js/someacerto.js'></script>
+      <script src='js/someerro.js'></script>
     <script src='js/background.js'> </script>
   </body>
 

@@ -70,6 +70,19 @@
 
     </nav>
 
+        {{#if success}}
+          <div class="success" role="alert" id="acertolista">
+              <div class="textoacerto"><strong>Sucesso!</strong> {{success}}</div>
+
+          </div>
+        {{/if}}
+        {{#if error}}
+          <div class="error" role="alert" id="errolista">
+
+            <div class="textoerro"><strong>Erro!</strong> {{error}}</div>
+          </div>
+        {{/if}}
+    <div class = 'conteudo'>
 
     <div class='conteudo'>
         <div class='bolinha'>
@@ -102,6 +115,7 @@
     </footer>
 
     <script src='js/login.js'></script>
+    <script src='js/someerro.js'></script>
     <script src='js/submenu.js'></script>
     <script src='js/background.js'> </script>
   </body>

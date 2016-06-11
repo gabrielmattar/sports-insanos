@@ -52,3 +52,49 @@
   line-height: 2em;
   font-size: 2em;
 }
+.error {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 80px;;
+  width: 100%;
+  opacity: 1;
+  background-color: #D80909;
+  text-align: center;
+  border-radius: 10px;
+
+
+
+}
+
+.textoerro{
+  padding-top: 2%;
+
+}
+
+.pula {
+  transition: transform 1s;
+}
+
+.desce {
+  transition: transform 5s;
+  transform:  translateY(-1000px);
+}
+.suceso {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 80px;
+  width: 100%;
+  opacity: 1;
+  background-color: #44B711
+  text-align: center;
+  border-radius: 10px;
+
+
+
+}
+.textoacerto{
+  padding-top: 2%;
+
+}

@@ -13,6 +13,7 @@ var ObjectId = require('mongodb').ObjectID;
 
 
 
+
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
 var flash        = require('connect-flash');
@@ -64,7 +65,11 @@ app.get('/time', function(req, res) {
 
 
 app.get('/', function (req, res) {
-  res.render('frontpage.hbs');
+  res.render('frontpage.hbs',{
+    error : req.flash('error'),
+    success : req.flash('success')
+
+  });
 });
 
 app.post('/novapagc', function(req,res){
@@ -76,22 +81,80 @@ app.post('/novapagc', function(req,res){
     var enviacamp = req.body.nomeca;
     res.render('cadastrocamp.hbs', {
       vetor : vetor,
-      enviacamp :enviacamp
-
+      enviacamp :enviacamp,
+      error : req.flash('error'),
+      success : req.flash('success')
     });
 
 });
 
 app.get('/cadastrocamp', function (req, res) {
-  res.render('cadastrocamp.hbs');
+  console.log('aaa');
+  res.render('cadastrocamp.hbs', {
+    error : req.flash('error'),
+    success : req.flash('success')
+
+  });
 });
 app.post('/cadastroc', function (req, res) {
+  var timesc = req.body.nomet;
+  var times = [];
+    for(var time of timesc){
+      Time.findOne({nometime: time}, function(err, team){
+        if(err){
+          console.log(err);
+        }
+        else {
+          //User.findOne({username: req.user.username}, function(err, admi){
+          User.findOne({username: 'fegemo'}, function(err, admi){
+            if(err){
+              console.log(err);
+            }
+            else {
+              times.push(team);
+              if(times.length == req.body.numerot) {
+                var keys = [];
+                keys.push({
+                  times: times
+                })
+                var i = times.length/2;
+                //Nessa sessao abaixo usamos um time em branco para preencher o resto das chaves
+                //Se a entrada foram 8 times entao vao haver 3 chaves, a primeira com 8 times a
+                //segunda com 4 a terceira com 2 e a primeira com 1
+                Time.findOne({nometime: '-'}, function(err, branco){
+                  while(i >= 1){
+                    var brancos = [];
+                    for(var j = 0; j < i; j++){
+                      brancos.push(branco._id);
+                    }
+                    keys.push({
+                      times: brancos
+                    })
+                    i=i/2;
+                  }
+                  var newCamp =  Camp({
+                    nome: req.body.nomec,
+                    numerotimes: req.body.numerot,
+                    chaves: keys,
+                    adm:admi
+                  } );
 
-  var camp = new Camp();
-  camp.Cria(req.body.numerot, req.body.nomec, 'fegemo', req.body.nomet, User, Time);
+                  newCamp.save(function(err) {
+                    if (err) throw err;
+                  });
+                });
 
-  res.render('frontpage.hbs');
+              }
+            }
+          });
+        }
+      });
+    }
+    req.flash('success', 'Campeonato Criado!!');
+    res.redirect('/cadastrocamp');
+
 });
+
 
 
 
@@ -204,12 +267,14 @@ app.post('/Search', function(req, res){
 
 
       res.render('campeonatochaves.hbs', {
-        campeonato : campeonato
+        campeonato : campeonato,
+        error : req.flash('error'),
+        success : req.flash('success')
       });
 
     }
     else{
-      req.flash('error', 'Campeonato não encontrado');
+      req.flash('success', 'Campeonato não encontrado');
       res.redirect('/lista');
     }
 
@@ -262,7 +327,11 @@ app.get('/lista', function (req, res) {
 });
 */
 app.get('/cadastro', function (req, res) {
-  res.render('cadastro.hbs');
+  res.render('cadastro.hbs', {
+
+    error : req.flash('error'),
+    success : req.flash('success')
+  });
 });
 
 //Receber o formulario de cadastro de usuario
@@ -276,19 +345,31 @@ app.post('/cadastro', function(req, res) {
     password: req.body.senha,
     sexo: req.body.sex
   });
+  try{
+    newUser.save(function(err) {
 
-  newUser.save(function(err) {
-    if (err) throw err;
+        if (err) console.log(err);
 
-    console.log('User created!');
-  });
 
-  res.render('frontpage.hbs');
+    });
+
+  }
+  catch(ex){
+    req.flash('error', 'Esse username provavelmente já existe, use outro XD');
+
+    res.redirect('/');
+  }
+  req.flash('success', 'O usuário foi criado com sucesso');
+  res.redirect('/');
 });
 
 
 app.get('/criar-time', function (req, res) {
-  res.render('criartime.hbs');
+  res.render('criartime.hbs',{
+
+    success : req.flash('success'),
+    error : req.flash('error')
+  });
 });
 
 app.post('/novapag', function(req,res){
@@ -298,8 +379,10 @@ app.post('/novapag', function(req,res){
       vetor.push(i+1);
     }
 
-    res.render('criartime.hbs', {
+    res.render('/criartime.hbs', {
       vetor : vetor,
+      error : req.flash('error'),
+      success : req.flash('success'),
       numerob :numerob
     });
 
@@ -314,7 +397,7 @@ app.post('/novotime', function (req, res) {
     for(var Username of Usernames){
       User.findOne({username: Username}, function(err, usuario){
         if(err){
-          console.log(err);
+            req.flash('error', 'Time Não foi criado!! Algum usuário não existe XD');
         }
         else {
           UsersId.push(usuario._id);
@@ -326,15 +409,24 @@ app.post('/novotime', function (req, res) {
             } );
 
             newTime.save(function(err) {
-              if (err) throw err;
-              console.log('Time created!');
+              if (err) {
+                req.flash('error', 'Time Não foi criado!! Utilize um nome de time diferente XD');
+
+              }
+              else{
+              req.flash('success', 'Time Criado!!');
+            }
             });
           }
         }
       });
     }
 
-  res.render('frontpage.hbs');
+  res.render('cadastrocamp.hbs',{
+    error : req.flash('error'),
+    success : req.flash('success')
+
+  });
 });
 
 

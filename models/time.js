@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 var timeSchema =  new Schema({
-  nometime: String,
+  nometime: {type: String, required: true, unique: true},
   integrantes: [{
     type: Schema.Types.ObjectId,
     ref: 'User'
