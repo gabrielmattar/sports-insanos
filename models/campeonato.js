@@ -76,8 +76,14 @@ campSchema.methods.Cria = function(tamanho, nomec, admin, nomet, User, Time) {
                   } );
 
                   newCamp.save(function(err) {
-                    if (err) throw err;
-                    console.log('Campeonato created!');
+                    if (err) {
+                      req.flash('error', 'Campeonato Criado!!');
+                      res.redirect('/cadastrocamp');
+                    }
+                    else{
+                      req.flash('error', 'Campeonato Criado!!');
+                      res.redirect('/cadastrocamp');
+                    }
                   });
                 });
 
