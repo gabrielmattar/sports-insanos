@@ -97,62 +97,10 @@ app.get('/cadastrocamp', function (req, res) {
   });
 });
 app.post('/cadastroc', function (req, res) {
-  var timesc = req.body.nomet;
-  var times = [];
-    for(var time of timesc){
-      Time.findOne({nometime: time}, function(err, team){
-        if(err){
-          console.log(err);
-        }
-        else {
-          //User.findOne({username: req.user.username}, function(err, admi){
-          User.findOne({username: 'fegemo'}, function(err, admi){
-            if(err){
-              console.log(err);
-            }
-            else {
-              times.push(team);
-              if(times.length == req.body.numerot) {
-                var keys = [];
-                keys.push({
-                  times: times
-                })
-                var i = times.length/2;
-                //Nessa sessao abaixo usamos um time em branco para preencher o resto das chaves
-                //Se a entrada foram 8 times entao vao haver 3 chaves, a primeira com 8 times a
-                //segunda com 4 a terceira com 2 e a primeira com 1
-                Time.findOne({nometime: '-'}, function(err, branco){
-                  while(i >= 1){
-                    var brancos = [];
-                    for(var j = 0; j < i; j++){
-                      brancos.push(branco._id);
-                    }
-                    keys.push({
-                      times: brancos
-                    })
-                    i=i/2;
-                  }
-                  var newCamp =  Camp({
-                    nome: req.body.nomec,
-                    numerotimes: req.body.numerot,
-                    chaves: keys,
-                    adm:admi
-                  } );
-
-                  newCamp.save(function(err) {
-                    if (err) throw err;
-                  });
-                });
-
-              }
-            }
-          });
-        }
-      });
-    }
-    req.flash('success', 'Campeonato Criado!!');
-    res.redirect('/cadastrocamp');
-
+  var camp = new Camp();
+  camp.Cria(req.body.numerot, req.body.nomec, 'fegemo', req.body.nomet, User, Time);
+  req.flash('success', 'Campeonato Criado!!');
+  res.redirect('/cadastrocamp');
 });
 
 
