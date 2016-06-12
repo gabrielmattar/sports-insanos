@@ -228,52 +228,7 @@ app.post('/Search', function(req, res){
 
   });
 });
-/*
-app.get('/lista', function (req, res) {
-  var cchave =[];
-  Camp.find({}, function(err, campeonato){
-    if(err){
-      console.log(err);
-    } else {
 
-        for(camp of campeonato){
-          var winner = _.last(camp.chaves);
-          winner = winner.times[1];
-          User.find({_id: ObjectId(winner)}, function(err, win){
-            console.log(win);
-            if(err){
-              console.log(err);
-            }
-            else{
-            var conjunto = [];
-            for(var i=0;i<camp.numerotimes;i++){
-              if(Math.pow(2,i)==camp.numerotimes){
-                var perct = (camp.chaves.length/i)*100;
-                if(perct>=100){
-                  perct=100;
-
-                  conjunto.push(camp,perct,win.nometime);
-                    }
-                }
-                break;
-              }
-              cchave.push(conjunto);
-            }
-
-          });
-        }
-
-
-      res.render('lista.hbs', {
-
-        //campeonato : campeonato,
-        cchave : cchave
-      });
-
-    }
-  });
-});
-*/
 app.get('/cadastro', function (req, res) {
   res.render('cadastro.hbs', {
 
@@ -293,21 +248,20 @@ app.post('/cadastro', function(req, res) {
     password: req.body.senha,
     sexo: req.body.sex
   });
-  try{
-    newUser.save(function(err) {
 
-        if (err) console.log(err);
+    var test=0;
 
-
-    });
-
-  }
-  catch(ex){
-    req.flash('error', 'Esse username provavelmente já existe, use outro XD');
-
-    res.redirect('/');
-  }
-  req.flash('success', 'O usuário foi criado com sucesso');
+    //req.flash('success', 'O usuário foi criado com sucesso');
+  newUser.save(function(err) {
+      if (err) {
+      //  console.log(err);
+        req.flash('error','Username Errado');
+        test=1;
+        //res.redirect('/');
+      }
+      else{console.log('user criado'); }
+  });//{console.log('hue');}
+  console.log(test);
   res.redirect('/');
 });
 
