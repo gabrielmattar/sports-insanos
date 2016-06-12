@@ -98,6 +98,7 @@ app.get('/cadastrocamp', function (req, res) {
 });
 app.post('/cadastroc', function (req, res) {
   var camp = new Camp();
+
   camp.Cria(req.body.numerot, req.body.nomec, 'fegemo', req.body.nomet, User, Time);
   req.flash('success', 'Campeonato Criado!!');
   res.redirect('/cadastrocamp');
@@ -257,12 +258,14 @@ app.post('/cadastro', function(req, res) {
       //  console.log(err);
         req.flash('error','Username Errado');
         test=1;
-        //res.redirect('/');
+        console.log(test);
+        res.redirect('/');
       }
-      else{console.log('user criado'); }
+      else{
+        console.log('user criado');
+        res.redirect('/');
+      }
   });//{console.log('hue');}
-  console.log(test);
-  res.redirect('/');
 });
 
 
