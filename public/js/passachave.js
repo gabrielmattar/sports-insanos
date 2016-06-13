@@ -10,6 +10,6 @@ function passachave(nometime, indice) {
   var chave = clickado.parentNode.parentNode.parentNode;
   var campeonato = chave.parentNode;
   var path = campeonato.id + '/' + chave.id + '/' + nometime + '/' + indice;
-  xhttp.open("GET", "http://localhost:5000/avanca/" + path, true);
+  xhttp.open("GET", "/avanca/" + path, true);
   xhttp.send();
 }
