@@ -100,10 +100,10 @@ app.post('/cadastroc', function (req, res) {
   var camp = new Camp();
 
 //  camp.Cria(req.body.numerot, req.body.nomec, 'marchezinixd', req.body.nomet, User, Time);
-  let tamanho=req.body.numerot;
-  let nomec=req.body.nomec;
-  let admin='marchezinixd';
-  let nomet = req.body.nomet;
+  var tamanho=req.body.numerot;
+  var nomec=req.body.nomec;
+  var admin='marchezinixd';
+  var nomet = req.body.nomet;
   var timesc = nomet;
   var times = [];
     for(var time of timesc){
@@ -203,7 +203,7 @@ app.get('/avanca/:campeonato/:chave/:time/:indice', function(req, res){
           console.log(err);
         }else{
           campeonato.chaves[chaveprox].times[indexprox] = time;
-          console.log("Inserindo " + time.nometime + " em chave: " + chaveprox + " posicao: "+ indexprox);  
+          console.log("Inserindo " + time.nometime + " em chave: " + chaveprox + " posicao: "+ indexprox);
           campeonato.markModified('chaves');
           campeonato.save();
         }
