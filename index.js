@@ -182,6 +182,35 @@ app.post('/cadastroc', function (req, res) {
 });
 
 
+//Funcao para avancar time quando ganha
+app.get('/avanca/:campeonato/:chave/:time/:indice', function(req, res){
+  var campeonato = req.params.campeonato;
+  var chave = req.params.chave;
+  var time = req.params.time;
+  var index = req.params.indice;
+
+  var chaveprox = Number(chave) + 1;
+  var indexprox = Math.floor(index/2);
+
+
+
+  Camp.findOne({nome : campeonato}, function(err, campeonato){
+    if(err){
+      console.log(err);
+    }else{
+      Time.findOne({nometime:time}, function(err, time){
+        if(err){
+          console.log(err);
+        }else{
+          campeonato.chaves[chaveprox].times[indexprox] = time;
+          console.log("Inserindo " + time.nometime + " em chave: " + chaveprox + " posicao: "+ indexprox);  
+          campeonato.markModified('chaves');
+          campeonato.save();
+        }
+      });
+    }
+  });
+});
 
 
 app.get('/lista', function (req, res) {

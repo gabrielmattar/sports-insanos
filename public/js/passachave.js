@@ -1,10 +1,15 @@
-function passachave(nometime) {
+function passachave(nometime, indice) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (xhttp.readyState == 4 && xhttp.status == 200) {
-      document.getElementById(nometime).innerHTML = xhttp.responseText;
+      //Encontrar o proximo maluquinho
+      document.getElementById().innerHTML = xhttp.responseText;
     }
   };
-  xhttp.open("GET", "http://localhost:5000/avanca", true);
+  var clickado = document.getElementById(nometime+indice);
+  var chave = clickado.parentNode.parentNode.parentNode;
+  var campeonato = chave.parentNode;
+  var path = campeonato.id + '/' + chave.id + '/' + nometime + '/' + indice;
+  xhttp.open("GET", "http://localhost:5000/avanca/" + path, true);
   xhttp.send();
 }
