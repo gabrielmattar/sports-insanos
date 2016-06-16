@@ -13,7 +13,6 @@ var ObjectId = require('mongodb').ObjectID;
 
 
 
-
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
 var flash        = require('connect-flash');
@@ -221,16 +220,24 @@ app.get('/lista', function (req, res) {
         console.log(err);
       } else {
         for(camp of campeonato){
-
+          var atual=0;
           var conjunto = [];
           for(var i=0;i<camp.numerotimes;i++){
             if(Math.pow(2,i)==camp.numerotimes){
-              for (var j = 0; j<camp.chaves.length ;j++){
-                if((camp.chaves[j].times[0].nometime)=="-"){
-                  atual=j-1;
-                  break;
+              for (var j = 1; j<camp.chaves.length ;j++){
+                for(var ka=0;ka<camp.chaves[j].times.length;ka++)
+                if((camp.chaves[j].times[ka].nometime)!="-"){
+                  atual=atual+1 ;
+                  total=total +1;
+
                 }
-              }
+                else{
+                  total= total +1;
+                }
+              }/*
+              if(j==camp.chaves.length){
+                atual=j-1;
+              }*/
               var perct = (atual/i)*100;
               if(perct==100){
 
@@ -269,20 +276,35 @@ app.get('/lista', function (req, res) {
 
         for(camp of campeonato){
           var conjunto = [];
+          var atual=0;
+          var total=0;
           for(var i=0;i<camp.numerotimes;i++){
             if(Math.pow(2,i)==camp.numerotimes){
               //var atual = camp.chaves.length ;
-              for (var j = 0; j<camp.chaves.length ;j++){
-                if((camp.chaves[j].times[0].nometime)=="-"){
-                  atual=j-1;
-                  break;
+              for (var j = 1; j<camp.chaves.length ;j++){
+                for(var ka=0;ka<camp.chaves[j].times.length;ka++)
+                if((camp.chaves[j].times[ka].nometime)!="-"){
+                  atual=atual+1 ;
+                  total=total +1;
+
                 }
-              }
-              var perct = (atual/i)*100;
+                else{
+                  total= total +1;
+                }
+
+              }/*
+              if(j==camp.chaves.length){
+                atual=j-1;
+              }*/
+
+              var perct = (atual/total)*100;
 
               if(perct==100){
 
-                var winner = _.last(camp.chaves);    uls[i].classList.toggle('aparece');
+                var winner = _.last(camp.chaves);
+                var winner = winner.times[0];
+                //uls[i].classList.toggle('aparece');
+                conjunto.push(camp,perct,winner);
               }
               else{
 
@@ -329,7 +351,7 @@ app.post('/Search', function(req, res){
 
     }
     else{
-      req.flash('success', 'Campeonato não encontrado');
+      req.flash('error', 'Campeonato não encontrado');
       res.redirect('/lista');
     }
 
