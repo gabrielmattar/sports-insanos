@@ -239,6 +239,7 @@ app.get('/lista', function (req, res) {
                 atual=j-1;
               }*/
               var perct = (atual/i)*100;
+              perct = Math.round(perct * 100) / 100;
               if(perct==100){
 
                 var winner = _.last(camp.chaves);
@@ -298,6 +299,7 @@ app.get('/lista', function (req, res) {
               }*/
 
               var perct = (atual/total)*100;
+              perct = Math.round(perct * 100) / 100;
 
               if(perct==100){
 
