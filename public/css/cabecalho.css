@@ -283,18 +283,18 @@ screen and (max-width: 860px){
 }
 #logado{
   position: absolute;;
-
+  font-size: 14px;
   right:0px;
   color: white;
+  padding-right: 2%;
 
 
 }
 .logout{
   position: absolute;
-  float: right;
-  font-size: 13px;
-
+  font-size: 11px;
+  right: 0;
   padding-top: 1.5%;
   color: white;
-
+  padding-right: 30%;
 }

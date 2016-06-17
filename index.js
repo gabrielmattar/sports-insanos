@@ -270,16 +270,22 @@ app.get('/avanca/:campeonato/:chave/:time/:indice', function(req, res){
 
 app.get('/lista', function (req, res) {
   if(req.user){
+
     var cchave =[];
-    Camp.find({adm: req.user.username}, function(err, campeonato){
+    //AQUIIII
+    Camp.find({},{adm.username : usuarioadm},{}, function(err, campeonato){
+      console.log(campeonato);
       if(err){
         console.log(err);
       } else {
+
         for(camp of campeonato){
-          var atual=0;
           var conjunto = [];
+          var atual=0;
+          var total=0;
           for(var i=0;i<camp.numerotimes;i++){
             if(Math.pow(2,i)==camp.numerotimes){
+              //var atual = camp.chaves.length ;
               for (var j = 1; j<camp.chaves.length ;j++){
                 for(var ka=0;ka<camp.chaves[j].times.length;ka++)
                 if((camp.chaves[j].times[ka].nometime)!="-"){
@@ -290,17 +296,20 @@ app.get('/lista', function (req, res) {
                 else{
                   total= total +1;
                 }
+
               }/*
               if(j==camp.chaves.length){
                 atual=j-1;
               }*/
-              var perct = (atual/i)*100;
+
+              var perct = (atual/total)*100;
               perct = Math.round(perct * 100) / 100;
+
               if(perct==100){
 
                 var winner = _.last(camp.chaves);
                 var winner = winner.times[0];
-
+                //uls[i].classList.toggle('aparece');
                 conjunto.push(camp,perct,winner);
               }
               else{
@@ -456,12 +465,28 @@ app.post('/cadastro', function(req, res) {
 
 
 app.get('/criar-time', function (req, res) {
-  res.render('criartime.hbs',{
 
-    success : req.flash('success'),
-    error : req.flash('error')
-  });
+  if(typeof req.user ==="undefined" ){
+    res.render('criartime.hbs',{
+      error : req.flash('error'),
+      success : req.flash('success'),
+      userlog: "Não Logado"
+
+    });
+  }
+  else{
+    res.render('criartime.hbs',{
+      error : req.flash('error'),
+      success : req.flash('success'),
+      userlog:  req.user.username
+
+    });
+
+  }
 });
+
+
+
 
 app.post('/novapag', function(req,res){
     var numerob = req.body.numbero;
@@ -470,12 +495,24 @@ app.post('/novapag', function(req,res){
       vetor.push(i+1);
     }
 
-    res.render('criartime.hbs', {
-      vetor : vetor,
-      error : req.flash('error'),
-      success : req.flash('success'),
-      numerob :numerob
-    });
+
+    if(typeof req.user ==="undefined" ){
+      res.render('criartime.hbs',{
+        error : req.flash('error'),
+        success : req.flash('success'),
+        userlog: "Não Logado",
+        numerob :numerob
+      });
+    }
+    else{
+      res.render('criartime.hbs',{
+        error : req.flash('error'),
+        success : req.flash('success'),
+        userlog:  req.user.username,
+        numerob :numerob
+      });
+
+    }
 
 });
 
