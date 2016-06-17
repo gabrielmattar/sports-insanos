@@ -294,79 +294,80 @@ app.get('/lista', function (req, res) {
   if(req.user){
 
     var cchave =[];
-    //AQUIIII
-    Camp.find({},{adm : req.user.username},{}, function(err, campeonato){
-      
-      if(err){
-        console.log(err);
-      } else {
+    User.findOne({username: req.user.username}, function(err, user){
+      Camp.find({ adm : user}).exec(function(err, campeonato){
+        if(err){
+          console.log(err);
+        } else {
 
-        for(camp of campeonato){
-          var conjunto = [];
-          var atual=0;
-          var total=0;
-          for(var i=0;i<camp.numerotimes;i++){
-            if(Math.pow(2,i)==camp.numerotimes){
-              //var atual = camp.chaves.length ;
-              for (var j = 1; j<camp.chaves.length ;j++){
-                for(var ka=0;ka<camp.chaves[j].times.length;ka++)
-                if((camp.chaves[j].times[ka].nometime)!="-"){
-                  atual=atual+1 ;
-                  total=total +1;
+          for(camp of campeonato){
+            var conjunto = [];
+            var atual=0;
+            var total=0;
+            for(var i=0;i<camp.numerotimes;i++){
+              if(Math.pow(2,i)==camp.numerotimes){
+                //var atual = camp.chaves.length ;
+                for (var j = 1; j<camp.chaves.length ;j++){
+                  for(var ka=0;ka<camp.chaves[j].times.length;ka++)
+                  if((camp.chaves[j].times[ka].nometime)!="-"){
+                    atual=atual+1 ;
+                    total=total +1;
 
+                  }
+                  else{
+                    total= total +1;
+                  }
+
+                }/*
+                if(j==camp.chaves.length){
+                  atual=j-1;
+                }*/
+
+                var perct = (atual/total)*100;
+                perct = Math.round(perct * 100) / 100;
+
+                if(perct==100){
+
+                  var winner = _.last(camp.chaves);
+                  var winner = winner.times[0];
+                  //uls[i].classList.toggle('aparece');
+                  conjunto.push(camp,perct,winner);
                 }
                 else{
-                  total= total +1;
+
+                  var winner = "-";
+
+                  conjunto.push(camp,perct,winner);
+
                 }
-
-              }/*
-              if(j==camp.chaves.length){
-                atual=j-1;
-              }*/
-
-              var perct = (atual/total)*100;
-              perct = Math.round(perct * 100) / 100;
-
-              if(perct==100){
-
-                var winner = _.last(camp.chaves);
-                var winner = winner.times[0];
-                //uls[i].classList.toggle('aparece');
-                conjunto.push(camp,perct,winner);
+                break;
               }
-              else{
-
-                var winner = "-";
-
-                conjunto.push(camp,perct,winner);
-
-              }
-              break;
             }
+            cchave.push(conjunto);
           }
-          cchave.push(conjunto);
-        }
 
-        if(typeof req.user ==="undefined" ){
-          res.render('lista.hbs', {
-            cchave : cchave,
-
-            error : req.flash('error'),
-            success : req.flash('success'),
-            userlog: "Não Logado"
-          });
-        }
-          else{
-            res.render('lista.hbs',{
+          if(typeof req.user ==="undefined" ){
+            res.render('lista.hbs', {
               cchave : cchave,
+
               error : req.flash('error'),
               success : req.flash('success'),
-              userlog:  req.user.username
-
+              userlog: "Não Logado"
             });
+          }
+            else{
+              res.render('lista.hbs',{
+                cchave : cchave,
+                error : req.flash('error'),
+                success : req.flash('success'),
+                userlog:  req.user.username
+
+              });
+          }
         }
-      }
+      });
     });
+
   }
   else{
     var cchave =[];
