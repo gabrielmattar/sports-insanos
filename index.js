@@ -146,6 +146,8 @@ app.post('/novapagc', function(req,res){
     }
       else{
         res.render('cadastrocamp.hbs',{
+          vetor : vetor,
+          enviacamp :enviacamp,
           error : req.flash('error'),
           success : req.flash('success'),
           userlog:  req.user.username
@@ -171,7 +173,7 @@ app.get('/cadastrocamp', function (req, res) {
         userlog:  req.user.username
 
       });
-}
+    }
 });
 app.post('/cadastroc', function (req, res) {
   var camp = new Camp();
@@ -576,7 +578,8 @@ app.post('/novapag', function(req,res){
         error : req.flash('error'),
         success : req.flash('success'),
         userlog: "Não Logado",
-        numerob :numerob
+        numerob :numerob,
+        vetor : vetor
       });
     }
     else{
@@ -584,7 +587,8 @@ app.post('/novapag', function(req,res){
         error : req.flash('error'),
         success : req.flash('success'),
         userlog:  req.user.username,
-        numerob :numerob
+        numerob :numerob,
+        vetor : vetor
       });
 
     }
