@@ -111,6 +111,7 @@ app.get('/', function (req, res) {
       userlog: "Não Logado"
 
     });
+
   }
   else{
     res.render('frontpage.hbs',{
@@ -134,22 +135,43 @@ app.post('/novapagc', function(req,res){
       vetor.push(i+1);
     }
     var enviacamp = req.body.nomeca;
-    res.render('cadastrocamp.hbs', {
-      vetor : vetor,
-      enviacamp :enviacamp,
-      error : req.flash('error'),
-      success : req.flash('success')
-    });
+    if(typeof req.user ==="undefined" ){
+      res.render('cadastrocamp.hbs', {
+        vetor : vetor,
+        enviacamp :enviacamp,
+        error : req.flash('error'),
+        success : req.flash('success'),
+        userlog: "Não Logado"
+      });
+    }
+      else{
+        res.render('cadastrocamp.hbs',{
+          error : req.flash('error'),
+          success : req.flash('success'),
+          userlog:  req.user.username
 
+        });
+  }
 });
 
 app.get('/cadastrocamp', function (req, res) {
 
-  res.render('cadastrocamp.hbs', {
-    error : req.flash('error'),
-    success : req.flash('success')
+  if(typeof req.user ==="undefined" ){
+    res.render('cadastrocamp.hbs', {
 
-  });
+      error : req.flash('error'),
+      success : req.flash('success'),
+      userlog: "Não Logado"
+    });
+  }
+    else{
+      res.render('cadastrocamp.hbs',{
+        error : req.flash('error'),
+        success : req.flash('success'),
+        userlog:  req.user.username
+
+      });
+}
 });
 app.post('/cadastroc', function (req, res) {
   var camp = new Camp();
@@ -273,8 +295,8 @@ app.get('/lista', function (req, res) {
 
     var cchave =[];
     //AQUIIII
-    Camp.find({},{adm.username : usuarioadm},{}, function(err, campeonato){
-      console.log(campeonato);
+    Camp.find({},{adm : req.user.username},{}, function(err, campeonato){
+      
       if(err){
         console.log(err);
       } else {
@@ -324,12 +346,25 @@ app.get('/lista', function (req, res) {
           }
           cchave.push(conjunto);
         }
-        res.render('lista.hbs', {
-          error : req.flash('error'),
-          success : req.flash('success'),
-          //campeonato : campeonato,
-          cchave : cchave
-        });
+
+        if(typeof req.user ==="undefined" ){
+          res.render('lista.hbs', {
+            cchave : cchave,
+
+            error : req.flash('error'),
+            success : req.flash('success'),
+            userlog: "Não Logado"
+          });
+        }
+          else{
+            res.render('lista.hbs',{
+              cchave : cchave,
+              error : req.flash('error'),
+              success : req.flash('success'),
+              userlog:  req.user.username
+
+            });
+        }
       }
     });
   }
@@ -385,13 +420,25 @@ app.get('/lista', function (req, res) {
           }
           cchave.push(conjunto);
         }
-        res.render('lista.hbs', {
-          error : req.flash('error'),
-          success : req.flash('success'),
-          //campeonato : campeonato,
-          cchave : cchave
-        });
+        if(typeof req.user ==="undefined" ){
+          res.render('lista.hbs', {
+            cchave : cchave,
+
+            error : req.flash('error'),
+            success : req.flash('success'),
+            userlog: "Não Logado"
+          });
+        }
+          else{
+            res.render('lista.hbs',{
+              cchave : cchave,
+              error : req.flash('error'),
+              success : req.flash('success'),
+              userlog:  req.user.username
+
+            });
       }
+    }
     });
 
 
@@ -409,12 +456,24 @@ app.post('/Search', function(req, res){
     }
     else if (campeonato!= null){
 
+      if(typeof req.user ==="undefined" ){
+        res.render('campeonatochaves.hbs', {
+          campeonato : campeonato,
 
-      res.render('campeonatochaves.hbs', {
-        campeonato : campeonato,
-        error : req.flash('error'),
-        success : req.flash('success')
-      });
+          error : req.flash('error'),
+          success : req.flash('success'),
+          userlog: "Não Logado"
+        });
+      }
+        else{
+          res.render('campeonatochaves.hbs',{
+            campeonato : campeonato,
+            error : req.flash('error'),
+            success : req.flash('success'),
+            userlog:  req.user.username
+
+          });
+    }
 
     }
     else{
@@ -426,11 +485,26 @@ app.post('/Search', function(req, res){
 });
 
 app.get('/cadastro', function (req, res) {
-  res.render('cadastro.hbs', {
 
-    error : req.flash('error'),
-    success : req.flash('success')
-  });
+  if(typeof req.user ==="undefined" ){
+    res.render('cadastro.hbs', {
+
+
+      error : req.flash('error'),
+      success : req.flash('success'),
+      userlog: "Não Logado"
+    });
+  }
+    else{
+      res.render('cadastro.hbs',{
+
+        error : req.flash('error'),
+        success : req.flash('success'),
+        userlog:  req.user.username
+
+      });
+    }
+
 });
 
 //Receber o formulario de cadastro de usuario
