@@ -10,7 +10,7 @@ var User = require('./models/users');
 var Time = require('./models/time');
 var Camp = require('./models/campeonato');
 var ObjectId = require('mongodb').ObjectID;
-
+var passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
 
 
 var cookieParser = require('cookie-parser');
@@ -23,6 +23,8 @@ app.use(session({
   saveUninitialized: true
 }));
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 mongoose.connect(mongoURI);
@@ -63,13 +65,67 @@ app.get('/time', function(req, res) {
 });
 
 
-app.get('/', function (req, res) {
-  res.render('frontpage.hbs',{
-    error : req.flash('error'),
-    success : req.flash('success')
 
-  });
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (user.password!=password) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/',
+                                    failureRedirect: '/',
+                                    failureFlash: true
+                                    })
+);
+
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
 });
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+app.get('/', function (req, res) {
+  if(typeof req.user ==="undefined" ){
+    res.render('frontpage.hbs',{
+      error : req.flash('error'),
+      success : req.flash('success'),
+      userlog: "Não Logado"
+
+    });
+  }
+  else{
+    res.render('frontpage.hbs',{
+      error : req.flash('error'),
+      success : req.flash('success'),
+      userlog:  req.user.username
+
+    });
+
+  }
+});
+
+
+/*app.post('/login', passport.authenticate('local', { successRedirect: '/',
+                                                    failureRedirect: '/login' }));*/
 
 app.post('/novapagc', function(req,res){
     var numerob = req.body.numerot;

@@ -24,6 +24,8 @@
     "hbs": "^4.0.0",
     "mongoose": "^4.4.19",
     "req-flash": "0.0.3",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "passport": "~0.3.2",
+    "passport-local": "~1.0.0"
   }
 }

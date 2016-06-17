@@ -18,18 +18,23 @@
 
   <body id="corpo">
     <header>
+
       <h1>Campeonatos Irados</h1>
     </header>
-    <div class='login'>
-      <form>
+    <div id='logado'>{{userlog}}<br>
+    <a href="/logout" class="logout">logout</a>
+    </div>
+
+    <div class='login' >
+      <form action= "/login" method="post">
         <strong>User:</strong>
         <div>
-          <input type="text" name="loginnome" required/>
+          <input type="text" name="username" required/>
         </div>
 
         <strong>Password:</strong>
         <div>
-          <input type='password' name='loginsenha' required/>
+          <input type='password' name='password' required/>
         </div>
         <button class='next' type='loginbutton'>Login</button>
       </form>
@@ -86,7 +91,7 @@
 
     <div class='conteudo'>
         <div class='bolinha'>
-          <p>Crie <br>campeonatos <br><strong>INSANOS</strong></p>
+          <p>Crie <br>campeonatos <br><strong>INSANOS </strong></p>
         </div>
         <div class='bolinha'>
           <p><br>Divirta-se <br><strong>DEMAIS</strong></p>
