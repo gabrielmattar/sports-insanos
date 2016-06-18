@@ -275,11 +275,13 @@ app.get('/avanca/:campeonato/:chave/:time/:indice', function(req, res){
 
   Camp.findOne({nome : campeonato}, function(err, campeonato){
     if(err){
-      console.log(err);
+      res.status(500);
+      res.render('5XX.hbs');
     }else{
       Time.findOne({nometime:time}, function(err, time){
         if(err){
-          console.log(err);
+          res.status(500);
+          res.render('5XX.hbs');
         }else{
           campeonato.chaves[chaveprox].times[indexprox] = time;
           console.log("Inserindo " + time.nometime + " em chave: " + chaveprox + " posicao: "+ indexprox);
@@ -299,7 +301,8 @@ app.get('/lista', function (req, res) {
     User.findOne({username: req.user.username}, function(err, user){
       Camp.find({ adm : user}).exec(function(err, campeonato){
         if(err){
-          console.log(err);
+          res.status(500);
+          res.render('5XX.hbs');
         } else {
 
           for(camp of campeonato){
@@ -375,7 +378,8 @@ app.get('/lista', function (req, res) {
     var cchave =[];
     Camp.find({},{},{limit : 10}, function(err, campeonato){
       if(err){
-        console.log(err);
+        res.status(500);
+        res.render('5XX.hbs');
       } else {
 
         for(camp of campeonato){
@@ -663,4 +667,36 @@ hbs.registerHelper('if_odd', function(conditional, options) {
   } else {
     return options.inverse(this);
   }
+});
+
+app.get('*', function (req, res) {
+
+    res.render('Error404.hbs',{
+      error : req.flash('error'),
+      success : req.flash('success'),
+      userlog: "Não Logado"
+
+    });
+
+
+});
+
+app.use(function(error, req, res, next) {
+  res.status(500);
+  res.render('5XX.hbs');
+ })
+
+ app.use(function (req, res, next) {
+    if (config.globals.maintenanceModeEnabled) {
+
+        // Need this condition to avoid redirect loop
+        if (req.url !== '/503') {
+             res.status(503).render('Error503.hbs');
+        } else {
+            next();
+        }
+
+    } else {
+        next();
+    }
 });
