@@ -48,7 +48,6 @@ musica1.start();
               (doc && doc.scrollTop  || body && body.scrollTop  || 0) -
               (doc && doc.clientTop  || body && body.clientTop  || 0 );
         }
-        console.log(event.pageX + " " + event.pageY);
         // Use event.pageX / event.pageY here
         // Interpolar a frequencia entre a minima e metade da fornecida
         var minValue = 300;
