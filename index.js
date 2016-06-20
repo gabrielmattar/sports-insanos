@@ -181,10 +181,13 @@ app.post('/cadastroc', function (req, res) {
 //  camp.Cria(req.body.numerot, req.body.nomec, 'marchezinixd', req.body.nomet, User, Time);
   var tamanho=req.body.numerot;
   var nomec=req.body.nomec;
-  var admin='marchezinixd';
+  var admin;
   var nomet = req.body.nomet;
   var timesc = nomet;
   var times = [];
+
+  if(req.user){
+    admin = req.user.username;
     for(var time of timesc){
       Time.findOne({nometime: time}, function(err, team){
         if(!team){
@@ -256,8 +259,10 @@ app.post('/cadastroc', function (req, res) {
         }
       });
     }
-  //req.flash('success', 'Campeonato Criado!!');
-  //res.redirect('/cadastrocamp');
+  } else{
+    req.flash('error', 'Por favor faca a gentileza de logar, n doi nada');
+    res.redirect('/cadastrocamp');
+  }
 });
 
 
