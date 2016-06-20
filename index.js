@@ -277,7 +277,8 @@ app.get('/avanca/:campeonato/:chave/:time/:indice', function(req, res){
     if(err){
       res.status(500);
       res.render('5XX.hbs');
-    }else{
+    }else if (req.user && req.user.username == campeonato.adm.username) {
+
       Time.findOne({nometime:time}, function(err, time){
         if(err){
           res.status(500);
